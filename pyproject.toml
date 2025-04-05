@@ -1,0 +1,32 @@
+[project]
+name = "pro_forge"
+version = "0.1.0"
+description = "A Django-based job search platform"
+authors = ["Prime Glorious <TheComboPunk@gmail.com>"]
+dependencies = []
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "W"]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+skip-string-normalization = false
+
+[tool.isort]
+profile = "black"
+line-length = 88
+known_first_party = ["pro_forge"]
+multi_line_output = 3
+
+[tool.mypy]
+files = "pro_forge"
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+ignore_missing_imports = true
+
+[dependency-groups]
+dev = [
+    "ruff>=0.11.4",
+]
