@@ -26,14 +26,14 @@
       <div class="col-md-4 mb-4">
         <div class="p-4 border rounded bg-white h-100 shadow-sm">
           <h2 class="fw-bold">Verified Profiles</h2>
-          <p class="display-6 text-danger">1,000+</p>
+          <p class="display-6 text-danger">{{ candidates_count }}+</p>
           <p class="text-muted">Trusted candidate accounts</p>
         </div>
       </div>
     </div>
 
     <div class="text-center mb-5">
-      <a href="#" class="btn btn-dark px-4 py-2 fs-5">Start Exploring Jobs</a>
+      <a href="{% url 'candidates:jobs_list' %}" class="btn btn-dark px-4 py-2 fs-5">Start Exploring Jobs</a>
     </div>
   </div>
 {% endblock %}
