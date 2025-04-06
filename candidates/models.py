@@ -1,6 +1,14 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+
+class Company(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    website = models.URLField(null=True)
+    # logo = models.ImageField(upload_to="company_logos", null=True)
+
+
 class Vacancy(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100)
