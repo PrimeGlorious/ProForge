@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from candidates.models import Vacancy, Company
 
@@ -27,3 +27,9 @@ class JobsListView(ListView):
     model = Vacancy
     context_object_name = "vacancies"
     template_name = "candidates/vacancies_list.html"
+
+
+class JobsDetailView(DetailView):
+    model = Vacancy
+    context_object_name = "vacancy"
+    template_name = "candidates/vacancies_detail.html"
