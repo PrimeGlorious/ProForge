@@ -1,10 +1,11 @@
+from ckeditor.fields import RichTextField
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
 class Company(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = RichTextField()
     website = models.URLField(null=True)
     # logo = models.ImageField(upload_to="company_logos", null=True)
 

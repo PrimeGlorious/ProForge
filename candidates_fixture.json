@@ -3,199 +3,175 @@
     "model": "candidates.company",
     "pk": 1,
     "fields": {
-      "name": "NebulaTech",
-      "description": "Innovative solutions in cloud and AI.",
-      "website": "https://nebula.io"
+      "name": "Zeno Systems",
+      "description": "Pioneering decentralized networks.",
+      "website": "https://zeno.io"
     }
   },
   {
     "model": "candidates.company",
     "pk": 2,
     "fields": {
-      "name": "QuantumSoft",
-      "description": "Sustainable software development.",
-      "website": "https://quantumsoft.dev"
+      "name": "CloudForge Labs",
+      "description": "Next-gen cloud infrastructure services.",
+      "website": "https://cloudforge.dev"
     }
   },
   {
     "model": "candidates.company",
     "pk": 3,
     "fields": {
-      "name": "EcoForge",
-      "description": "Next-gen financial technology.",
-      "website": "https://ecoforge.com"
+      "name": "LuminaSoft",
+      "description": "Human-centered productivity tools.",
+      "website": "https://luminasoft.com"
     }
   },
   {
     "model": "candidates.company",
     "pk": 4,
     "fields": {
-      "name": "BrightWorks",
-      "description": "Green energy IoT products.",
-      "website": "https://bright.works"
+      "name": "HyperNetics",
+      "description": "Real-time analytics for enterprise.",
+      "website": "https://hypernetics.ai"
     }
   },
   {
     "model": "candidates.company",
     "pk": 5,
     "fields": {
-      "name": "SkyLink Systems",
-      "description": "Human-centered design and UX.",
-      "website": "https://skylink.systems"
+      "name": "NextBlock",
+      "description": "Blockchain infrastructure solutions.",
+      "website": "https://nextblock.io"
     }
   },
   {
     "model": "candidates.vacancy",
     "pk": 1,
     "fields": {
-      "created_at": "2025-04-01T10:00:00",
-      "title": "DevOps Engineer",
-      "salary": 90000,
+      "created_at": "2025-04-01T09:45:00",
+      "title": "Backend Developer",
+      "salary": 98000,
       "company": 1,
-      "location": "Berlin",
-      "contacts": "hr@nebula.io",
-      "description": "CI/CD pipelines and Docker."
+      "location": "London",
+      "contacts": "hr@zeno.io",
+      "description": "<p>We're looking for a <strong>Backend Developer</strong> to join our team.</p><ul><li>Experience with Python/Django</li><li>REST API development</li><li>Knowledge of Docker</li></ul><p><em>Remote-friendly</em></p>"
     }
   },
   {
     "model": "candidates.vacancy",
     "pk": 2,
     "fields": {
-      "created_at": "2025-04-02T12:30:00",
-      "title": "React Engineer",
-      "salary": null,
-      "company": 1,
+      "created_at": "2025-04-02T11:20:00",
+      "title": "DevOps Engineer",
+      "salary": 104000,
+      "company": 2,
       "location": "Remote",
-      "contacts": "jobs@nebula.io",
-      "description": "Agile team in international environment."
+      "contacts": "devops@cloudforge.dev",
+      "description": "<p><strong>DevOps Engineer</strong> to manage CI/CD pipelines and cloud infrastructure.</p><ul><li>AWS, Terraform, Kubernetes</li><li>Monitoring & alerting setup</li></ul><p><em>Competitive benefits</em></p>"
     }
   },
   {
     "model": "candidates.vacancy",
     "pk": 3,
     "fields": {
-      "created_at": "2025-04-03T14:45:00",
-      "title": "Data Scientist",
-      "salary": 105000,
-      "company": 2,
-      "location": "Barcelona",
-      "contacts": "careers@quantumsoft.dev",
-      "description": "Data analysis and ML models."
+      "created_at": "2025-04-03T10:10:00",
+      "title": "UI/UX Designer",
+      "salary": 89000,
+      "company": 3,
+      "location": "Berlin",
+      "contacts": "design@luminasoft.com",
+      "description": "<p>We need a creative <strong>UI/UX Designer</strong>.</p><ul><li>Figma, Adobe XD</li><li>Design systems</li><li>Collaboration with product teams</li></ul><p><em>On-site or hybrid</em></p>"
     }
   },
   {
     "model": "candidates.vacancy",
     "pk": 4,
     "fields": {
-      "created_at": "2025-04-04T09:00:00",
-      "title": "Project Manager",
-      "salary": 120000,
-      "company": 3,
-      "location": null,
-      "contacts": "recruit@ecoforge.com",
-      "description": "Cloud native microservices."
+      "created_at": "2025-04-04T14:00:00",
+      "title": "Data Engineer",
+      "salary": 113000,
+      "company": 4,
+      "location": "Paris",
+      "contacts": "careers@hypernetics.ai",
+      "description": "<p><strong>Data Engineer</strong> role focused on scalable pipelines and analytics.</p><ul><li>ETL frameworks</li><li>Apache Kafka, Spark</li></ul><p><em>Fast-paced, innovative team</em></p>"
     }
   },
   {
     "model": "candidates.vacancy",
     "pk": 5,
     "fields": {
-      "created_at": "2025-04-05T16:20:00",
-      "title": "Python Developer",
-      "salary": 105000,
-      "company": 4,
-      "location": "Warsaw",
-      "contacts": "team@bright.works",
-      "description": "Work with Django and REST."
+      "created_at": "2025-04-05T16:45:00",
+      "title": "Frontend Developer",
+      "salary": 91000,
+      "company": 5,
+      "location": "Remote",
+      "contacts": "jobs@nextblock.io",
+      "description": "<p>Join us as a <strong>Frontend Developer</strong> to shape blockchain dashboards.</p><ul><li>Vue.js or React</li><li>API integration</li><li>UX collaboration</li></ul><p><em>Flexible schedule</em></p>"
     }
   },
   {
     "model": "candidates.vacancy",
     "pk": 6,
     "fields": {
-      "created_at": "2025-04-06T11:10:00",
+      "created_at": "2025-04-06T09:10:00",
       "title": "QA Tester",
-      "salary": null,
-      "company": 5,
+      "salary": 80000,
+      "company": 1,
       "location": "Prague",
-      "contacts": "jobs@skylink.systems",
-      "description": "Test automation with Selenium."
+      "contacts": "qa@zeno.io",
+      "description": "<p><strong>QA Tester</strong> for automated and manual test cases.</p><ul><li>Selenium, Cypress</li><li>Bug tracking and test plans</li></ul><p><em>Entry-level welcome</em></p>"
     }
   },
   {
-    "model": "candidates.candidate",
-    "pk": 1,
+    "model": "candidates.vacancy",
+    "pk": 7,
     "fields": {
-      "username": "jane",
-      "password": "pbkdf2_sha256$260000$fakehash",
-      "email": "jane@example.com",
-      "is_active": true,
-      "is_staff": false,
-      "is_superuser": false
+      "created_at": "2025-04-06T10:30:00",
+      "title": "Security Analyst",
+      "salary": 120000,
+      "company": 2,
+      "location": "Amsterdam",
+      "contacts": "security@cloudforge.dev",
+      "description": "<p><strong>Security Analyst</strong> to help secure cloud platforms.</p><ul><li>Penetration testing</li><li>Incident response</li></ul><p><em>Clearance a plus</em></p>"
     }
   },
   {
-    "model": "candidates.candidate",
-    "pk": 2,
+    "model": "candidates.vacancy",
+    "pk": 8,
     "fields": {
-      "username": "mark",
-      "password": "pbkdf2_sha256$260000$fakehash",
-      "email": "mark@example.com",
-      "is_active": true,
-      "is_staff": false,
-      "is_superuser": false
+      "created_at": "2025-04-06T12:00:00",
+      "title": "Project Manager",
+      "salary": 110000,
+      "company": 3,
+      "location": "Madrid",
+      "contacts": "pm@luminasoft.com",
+      "description": "<p><strong>Project Manager</strong> to lead agile teams.</p><ul><li>Scrum ceremonies</li><li>Risk management</li><li>Client communication</li></ul><p><em>Multilingual preferred</em></p>"
     }
   },
   {
-    "model": "candidates.candidate",
-    "pk": 3,
+    "model": "candidates.vacancy",
+    "pk": 9,
     "fields": {
-      "username": "lena",
-      "password": "pbkdf2_sha256$260000$fakehash",
-      "email": "lena@example.com",
-      "is_active": true,
-      "is_staff": false,
-      "is_superuser": false
-    }
-  },
-  {
-    "model": "candidates.application",
-    "pk": 1,
-    "fields": {
-      "candidate": 1,
-      "vacancy": 2,
       "created_at": "2025-04-06T15:00:00",
-      "status": "applied"
+      "title": "Mobile Developer",
+      "salary": 97000,
+      "company": 4,
+      "location": "Remote",
+      "contacts": "apps@hypernetics.ai",
+      "description": "<p><strong>Mobile Developer</strong> for Android/iOS platforms.</p><ul><li>React Native or Flutter</li><li>App Store deployment</li></ul><p><em>Cross-platform mindset</em></p>"
     }
   },
   {
-    "model": "candidates.application",
-    "pk": 2,
+    "model": "candidates.vacancy",
+    "pk": 10,
     "fields": {
-      "candidate": 2,
-      "vacancy": 5,
-      "created_at": "2025-04-06T15:10:00",
-      "status": "interviewed"
-    }
-  },
-  {
-    "model": "candidates.application",
-    "pk": 3,
-    "fields": {
-      "candidate": 3,
-      "vacancy": 1,
-      "created_at": "2025-04-06T15:20:00",
-      "status": "rejected"
-    }
-  },
-  {
-    "model": "candidates.application",
-    "pk": 4,
-    "fields": {
-      "candidate": 1,
-      "vacancy": 4,
-      "created_at": "2025-04-06T16:30:00",
-      "status": "hired"
+      "created_at": "2025-04-06T17:00:00",
+      "title": "Cloud Architect",
+      "salary": 135000,
+      "company": 5,
+      "location": "Vienna",
+      "contacts": "cloud@nextblock.io",
+      "description": "<p>Seeking experienced <strong>Cloud Architect</strong>.</p><ul><li>Multi-cloud solutions</li><li>Designing infrastructure as code</li><li>Client-facing work</li></ul><p><em>Leadership role</em></p>"
     }
   }
 ]
