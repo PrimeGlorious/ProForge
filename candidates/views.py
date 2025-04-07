@@ -23,6 +23,13 @@ def index(request: HttpRequest) -> HttpResponse:
     )
 
 
+def about(request: HttpRequest) -> HttpResponse:
+    return render(
+        request,
+        "candidates/about.html"
+    )
+
+
 class JobsListView(ListView):
     model = Vacancy
     context_object_name = "vacancies"
