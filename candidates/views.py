@@ -34,6 +34,7 @@ class JobsListView(ListView):
     model = Vacancy
     context_object_name = "vacancies"
     template_name = "candidates/vacancies_list.html"
+    paginate_by = 7
 
 
 class JobsDetailView(DetailView):
