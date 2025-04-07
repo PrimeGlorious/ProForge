@@ -2,8 +2,11 @@ from django.contrib.auth import get_user_model
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views import generic
 from django.views.generic import ListView, DetailView
 
+from candidates.forms import CandidateRegistrationForm
 from candidates.models import Vacancy, Company
 
 
@@ -41,3 +44,9 @@ class JobsDetailView(DetailView):
     model = Vacancy
     context_object_name = "vacancy"
     template_name = "candidates/vacancies_detail.html"
+
+
+class RegisterView(generic.CreateView):
+    form_class = CandidateRegistrationForm
+    success_url = reverse_lazy("candidates:index")
+    template_name = "registration/signup.html"

@@ -10,15 +10,30 @@
         </nav>
       </div>
 
-      <div class="position-absolute start-50 top-0 translate-middle-x" style="transform: translateX(-50%) translateY(50%);">
+      <div class="position-absolute start-50 top-0 translate-middle-x"
+           style="transform: translateX(-50%) translateY(50%);">
         <div class="btn-group" role="group">
-          <a href="#" class="btn btn-dark px-4" style="border-top-left-radius: 999px; border-bottom-left-radius: 999px;">For Candidates</a>
-          <a href="#" class="btn btn-outline-dark px-4" style="border-top-right-radius: 999px; border-bottom-right-radius: 999px;">For Employers</a>
+          <a href="#" class="btn btn-dark px-4"
+             style="border-top-left-radius: 999px; border-bottom-left-radius: 999px;">For Candidates</a>
+          <a href="#" class="btn btn-outline-dark px-4"
+             style="border-top-right-radius: 999px; border-bottom-right-radius: 999px;">For Employers</a>
         </div>
       </div>
 
-      <div>
-        <a href="#" class="btn btn-dark px-4" style="border-radius: 999px;">Login</a>
+      <div class="d-flex gap-3">
+        {% if user.is_authenticated %}
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-dark px-4" style="border-radius: 999px;">Logout</button>
+          </form>
+          <a href="#" class="btn btn-dark px-4" style="border-radius: 999px;">
+            My Profile
+          </a>
+        {% else %}
+          <a href="{% url 'login' %}" class="btn btn-dark px-4" style="border-radius: 999px;">
+            Login
+          </a>
+        {% endif %}
       </div>
 
     </div>
@@ -31,7 +46,8 @@
       <input type="text" class="form-control border border-dark" placeholder="Search for jobs..."
              style="border-top-left-radius: 999px; border-bottom-left-radius: 999px;">
       <button class="btn btn-dark px-4" type="submit"
-              style="border-top-right-radius: 999px; border-bottom-right-radius: 999px;">Search</button>
+              style="border-top-right-radius: 999px; border-bottom-right-radius: 999px;">Search
+      </button>
     </form>
   </div>
 </header>
