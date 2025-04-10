@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -9,7 +10,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic
 from django.views.generic import ListView, DetailView
 
-from candidates.forms import CandidateRegistrationForm
+from candidates.forms import CandidateRegistrationForm, VacancySearchForm
 from candidates.models import Vacancy, Company, Candidate
 
 
@@ -43,7 +44,23 @@ class JobsListView(ListView):
     paginate_by = 7
 
     def get_queryset(self):
-        return Vacancy.objects.all().order_by("-created_at")
+        queryset = Vacancy.objects.all().order_by("-created_at")
+        text = self.request.GET.get("text", "")
+
+        if text:
+            return queryset.filter(
+                Q(title__icontains=text) | Q(description__icontains=text)
+            )
+
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(JobsListView, self).get_context_data(**kwargs)
+
+        text = self.request.GET.get("text", "")
+
+        context["search_query"] = text
+        return context
 
 
 class JobsDetailView(DetailView):

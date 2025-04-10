@@ -38,12 +38,13 @@
   <hr>
 
   <div class="container-fluid d-flex justify-content-center mt-5 px-4" style="max-width: 800px;">
-    <form class="input-group input-group-lg w-100">
-      <input type="text" class="form-control border border-dark" placeholder="Search for jobs..."
-             style="border-top-left-radius: 999px; border-bottom-left-radius: 999px;">
+    <form action="{% url 'candidates:jobs_list' %}" method="get" class="input-group input-group-lg w-100">
+      <input type="text" name="text" class="form-control border border-dark" placeholder="Search for jobs..."
+             style="border-top-left-radius: 999px; border-bottom-left-radius: 999px;" value="{{ search_query }}">
       <button class="btn btn-dark px-4" type="submit"
               style="border-top-right-radius: 999px; border-bottom-right-radius: 999px;">Search
       </button>
     </form>
+
   </div>
 </header>

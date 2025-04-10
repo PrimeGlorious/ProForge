@@ -1,3 +1,4 @@
+{% load query_transform %}
 {% if is_paginated %}
 <nav aria-label="Pagination" class="mt-4">
   <div class="text-center mb-2 text-dark">
@@ -5,15 +6,9 @@
   </div>
   <ul class="pagination justify-content-center mb-4">
 
-    {% if page_obj.number > 2 %}
-      <li class="page-item">
-        <a class="page-link text-dark bg-white border-dark rounded-pill px-3" href="?page=1">First</a>
-      </li>
-    {% endif %}
-
     {% if page_obj.has_previous %}
       <li class="page-item">
-        <a class="page-link text-dark bg-white border-dark rounded-pill px-3" href="?page={{ page_obj.previous_page_number }}">Prev</a>
+        <a class="page-link text-dark bg-white border-dark rounded-pill px-3" href="?{% query_transform request page=page_obj.prev_page_number %}">Prev</a>
       </li>
     {% else %}
       <li class="page-item disabled">
@@ -23,17 +18,11 @@
 
     {% if page_obj.has_next %}
       <li class="page-item">
-        <a class="page-link text-dark bg-white border-dark rounded-pill px-3" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="page-link text-dark bg-white border-dark rounded-pill px-3" href="?{% query_transform request page=page_obj.next_page_number %}">Next</a>
       </li>
     {% else %}
       <li class="page-item disabled">
         <span class="page-link text-secondary bg-light border-dark rounded-pill px-3">Next</span>
-      </li>
-    {% endif %}
-
-    {% if page_obj.number < page_obj.paginator.num_pages|add:"-1" %}
-      <li class="page-item">
-        <a class="page-link text-dark bg-white border-dark rounded-pill px-3" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
       </li>
     {% endif %}
 
