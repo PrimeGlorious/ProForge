@@ -22,11 +22,7 @@
 
       <div class="d-flex gap-3">
         {% if user.is_authenticated %}
-          <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-outline-dark px-4" style="border-radius: 999px;">Logout</button>
-          </form>
-          <a href="#" class="btn btn-dark px-4" style="border-radius: 999px;">
+          <a href="{% url 'candidates:profile' %}" class="btn btn-dark px-4" style="border-radius: 999px;">
             My Profile
           </a>
         {% else %}

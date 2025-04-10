@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="bg-white rounded shadow-sm p-4">
+          {% if current_user.first_name %}
+            <h4 class="fw-bold mb-4">{{ current_user.first_name }} {{ current_user.last_name }}</h4>
+          {% else %}
+            <h4 class="fw-bold mb-4">Anonymous</h4>
+          {% endif %}
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" id="information-tab" data-bs-toggle="tab" href="#information-section">Information</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="resume-tab" data-bs-toggle="tab" href="#resume-section">My Resume</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="jobs-tab" data-bs-toggle="tab" href="#vacancy-section">Saved Vacancies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="applications-tab" data-bs-toggle="tab" href="#applications-section">My
+                Applications</a>
+            </li>
+          </ul>
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger mt-4 w-100" style="border-radius: 10px;">Log out
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-9">
+        <div class="tab-content">
+
+          <div class="tab-pane fade show active" id="information-section">
+            <div class="bg-white rounded shadow-sm p-4 mb-4">
+              <h5 class="fw-bold mb-3">Personal Information</h5>
+              <div class="row mb-3">
+                <div class="col-6"><strong>Full Name:</strong></div>
+                <div class="col-6">{{ current_user.first_name }} {{ current_user.last_name }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-6"><strong>Username:</strong></div>
+                <div class="col-6">{{ current_user.username }}</div>
+              </div>
+              {% if user.email %}
+                <div class="row mb-3">
+                  <div class="col-6"><strong>Email:</strong></div>
+                  <div class="col-6">{{ current_user.email }}</div>
+                </div>
+              {% endif %}
+              {% if current_user.first_name and current_user.last_name %}
+                <div class="row mb-3">
+                  <div class="col-6"><strong>Account Created:</strong></div>
+                  <div class="col-6">{{ current_user.date_joined|date:"F d, Y" }}</div>
+                </div>
+              {% endif %}
+              <a href="#" class="btn btn-outline-primary">Edit Profile</a>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="resume-section">
+            <div class="bg-white rounded shadow-sm p-4 mb-4">
+              <h5 class="fw-bold">Under development.</h5>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="vacancy-section">
+            <div class="bg-white rounded shadow-sm p-4 mb-4">
+              <h5 class="fw-bold mb-3">Saved Vacancies</h5>
+              {% if current_user.saved_vacancies.count > 0 %}
+
+                <a href="{% url 'candidates:jobs_detail' current_user.saved_vacancies.last.pk %}"
+                   class="vacancy-card d-block mb-4 text-decoration-none text-dark">
+                  <div class="bg-white shadow-sm p-5 h-100" style="min-height: 280px; border-radius: 24px;">
+
+                    {% if current_user.saved_vacancies.last.title %}
+                      <h3 class="fw-bold mb-3">{{ current_user.saved_vacancies.last.title }}</h3>
+                    {% endif %}
+
+                    {% if current_user.saved_vacancies.last.salary %}
+                      <p class="mb-2 fs-5 text-dark">{{ current_user.saved_vacancies.last.salary }} ₴</p>
+                    {% endif %}
+
+                    {% if current_user.saved_vacancies.last.company.name or current_user.saved_vacancies.last.location %}
+                      <div class="mb-3 text-muted">
+                        {% if current_user.saved_vacancies.last.company.name %}
+                          <strong>{{ current_user.saved_vacancies.last.company.name }}</strong>
+                        {% endif %}
+                        {% if current_user.saved_vacancies.last.location %}
+                          <span> · {{ current_user.saved_vacancies.last.location }}</span>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+
+                    {% if current_user.saved_vacancies.last.description %}
+                      <div class="text-muted mb-0"
+                           style="line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                        {{ current_user.saved_vacancies.last.description|safe }}
+                      </div>
+                    {% endif %}
+
+                  </div>
+                </a>
+                <a href="{% url 'candidates:saved_vacancies' %}" class="btn btn-outline-dark">View All Saved
+                  Vacancies</a>
+              {% else %}
+                <h6 class="fw-bold mt-5">Unfortunately, you have not saved any vacancy</h6>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="applications-section">
+            <div class="bg-white rounded shadow-sm p-4 mb-4">
+              <h5 class="fw-bold mb-5">Applications</h5>
+
+              {% if applications %}
+                <ul class="list-group">
+                  {% for application in applications|slice:":3" %}
+                    <div class="list-group-item d-flex justify-content-between align-items-center mb-3 py-3 border-top">
+                      <a href="{% url 'candidates:jobs_detail' application.vacancy.id %}"
+                         class="d-flex w-100 text-dark text-decoration-none">
+                        <div class="d-flex flex-column">
+                          <h6 class="mb-1">{{ application.vacancy.title }}</h6>
+                          <small class="text-muted">{{ application.created_at|date:"F j, Y" }}</small>
+                        </div>
+                      </a>
+
+                      <div>
+                        {% if application.status == 'applied' %}
+                          <span class="badge text-muted">Applied</span>
+                        {% elif application.status == 'interviewed' %}
+                          <span class="badge text-primary">Interviewed</span>
+                        {% elif application.status == 'hired' %}
+                          <span class="badge text-success">Hired</span>
+                        {% elif application.status == 'rejected' %}
+                          <span class="badge text-danger">Rejected</span>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endfor %}
+                </ul>
+                <a href="{% url 'candidates:applications' %}" class="btn btn-outline-dark">View All Applications</a>
+
+              {% else %}
+                <h6 class="fw-bold mt-5">Unfortunately, you have not applied for any vacancy</h6>
+              {% endif %}
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

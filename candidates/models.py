@@ -27,7 +27,8 @@ class Vacancy(models.Model):
 class Candidate(AbstractUser):
     # profile_image = models.ImageField(upload_to="profile_images", null=True)
     # resume = models.FileField(upload_to="resumes", null=True)
-    vacancies = models.ManyToManyField(to=Vacancy, related_name="candidates", through="Application")
+    vacancies = models.ManyToManyField(to=Vacancy, related_name="candidates", through="Application", blank=True)
+    saved_vacancies = models.ManyToManyField(to=Vacancy, related_name="saved_by", blank=True)
 
 
 class Application(models.Model):
