@@ -46,11 +46,28 @@ class JobsListView(ListView):
     def get_queryset(self):
         queryset = Vacancy.objects.all().order_by("-created_at")
         text = self.request.GET.get("text", "")
+        salary = self.request.GET.get("salary")
+        location = self.request.GET.get("location")
+        company = self.request.GET.get("company")
+        sort_by = self.request.GET.get("sort")
 
         if text:
             return queryset.filter(
                 Q(title__icontains=text) | Q(description__icontains=text)
             )
+        if salary:
+            queryset = queryset.filter(salary__gte=salary)
+        if location:
+            queryset = queryset.filter(location__icontains=location)
+        if company:
+            queryset = queryset.filter(company__name=company)
+
+        if sort_by == "salary_desc":
+            queryset = queryset.order_by("-salary")
+        elif sort_by == "salary_asc":
+            queryset = queryset.order_by("salary")
+        elif sort_by == "date":
+            queryset = queryset.order_by("-created_at")
 
         return queryset
 
@@ -60,6 +77,15 @@ class JobsListView(ListView):
         text = self.request.GET.get("text", "")
 
         context["search_query"] = text
+        context["filter"] = {
+            "salary": self.request.GET.get("salary", ""),
+            "title": self.request.GET.get("title", ""),
+            "location": self.request.GET.get("location", ""),
+            "company": self.request.GET.get("company", ""),
+            "sort": self.request.GET.get("sort", ""),
+        }
+        context["companies"] = Company.objects.all()
+
         return context
 
 
