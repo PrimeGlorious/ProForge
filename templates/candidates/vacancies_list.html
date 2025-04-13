@@ -6,36 +6,43 @@
       <div class="row">
 
         <div class="col-lg-8">
-          {% for vacancy in vacancies %}
-            <a href="{% url 'candidates:jobs_detail' vacancy.pk %}"
-               class="vacancy-card d-block mb-4 text-decoration-none text-dark">
-              <div class="bg-white shadow-sm p-5 h-100" style="min-height: 280px; border-radius: 24px;">
-                {% if vacancy.title %}
-                  <h3 class="fw-bold mb-3">{{ vacancy.title }}</h3>
-                {% endif %}
-                {% if vacancy.salary %}
-                  <p class="mb-2 fs-5 text-dark">{{ vacancy.salary }} ₴</p>
-                {% endif %}
-                {% if vacancy.company.name or vacancy.location %}
-                  <div class="mb-3 text-muted">
-                    {% if vacancy.company.name %}
-                      <strong>{{ vacancy.company.name }}</strong>
-                    {% endif %}
-                    {% if vacancy.location %}
-                      <span> · {{ vacancy.location }}</span>
-                    {% endif %}
-                  </div>
-                {% endif %}
-                {% if vacancy.description %}
-                  <div class="text-muted mb-0"
-                       style="line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                    {{ vacancy.description|safe }}
-                  </div>
-                {% endif %}
-              </div>
-            </a>
-          {% endfor %}
-          {% include "includes/paginate.html" %}
+          {% if vacancies %}
+            {% for vacancy in vacancies %}
+              <a href="{% url 'candidates:jobs_detail' vacancy.pk %}"
+                 class="vacancy-card d-block mb-4 text-decoration-none text-dark">
+                <div class="bg-white shadow-sm p-5 h-100" style="min-height: 280px; border-radius: 24px;">
+                  {% if vacancy.title %}
+                    <h3 class="fw-bold mb-3">{{ vacancy.title }}</h3>
+                  {% endif %}
+                  {% if vacancy.salary %}
+                    <p class="mb-2 fs-5 text-dark">{{ vacancy.salary }} ₴</p>
+                  {% endif %}
+                  {% if vacancy.company.name or vacancy.location %}
+                    <div class="mb-3 text-muted">
+                      {% if vacancy.company.name %}
+                        <strong>{{ vacancy.company.name }}</strong>
+                      {% endif %}
+                      {% if vacancy.location %}
+                        <span> · {{ vacancy.location }}</span>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                  {% if vacancy.description %}
+                    <div class="text-muted mb-0"
+                         style="line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                      {{ vacancy.description|safe }}
+                    </div>
+                  {% endif %}
+                </div>
+              </a>
+            {% endfor %}
+            {% include "includes/paginate.html" %}
+          {% else %}
+            <div class="text-center py-5">
+              <h4 class="fw-bold mb-3">No vacancies found</h4>
+              <p class="text-muted mb-0">Try adjusting your filters or search query.</p>
+            </div>
+          {% endif %}
         </div>
 
         {% include "includes/filter.html" %}
