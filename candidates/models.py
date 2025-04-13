@@ -1,26 +1,8 @@
-from ckeditor.fields import RichTextField
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-
-class Company(models.Model):
-    name = models.CharField(max_length=100)
-    description = RichTextField()
-    website = models.URLField(null=True)
-
-
-class Vacancy(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=100)
-    salary = models.PositiveIntegerField(null=True)
-    company = models.ForeignKey(
-        to="Company",
-        on_delete=models.CASCADE,
-        related_name="vacancies"
-    )
-    location = models.CharField(max_length=100, null=True)
-    contacts = models.CharField(max_length=100, null=True)
-    description = models.TextField()
+from employers.models import Vacancy
 
 
 class Candidate(AbstractUser):
@@ -45,7 +27,7 @@ class Application(models.Model):
         REJECTED = "rejected", "Rejected"
 
     candidate = models.ForeignKey(
-        to=Candidate,
+        to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="applications"
     )

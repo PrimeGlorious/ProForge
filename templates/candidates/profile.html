@@ -4,156 +4,148 @@
   <div class="container py-5">
     <div class="row">
       <div class="col-lg-3">
-        <div class="bg-white rounded shadow-sm p-4">
+        <div class="bg-white rounded shadow-sm p-4 text-center">
           {% if current_user.first_name %}
-            <h4 class="fw-bold mb-4">{{ current_user.first_name }} {{ current_user.last_name }}</h4>
+            <h4 class="fw-bold mb-1">{{ current_user.first_name }} {{ current_user.last_name }}</h4>
           {% else %}
-            <h4 class="fw-bold mb-4">Anonymous</h4>
+            <h4 class="fw-bold mb-1">Anonymous</h4>
           {% endif %}
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" id="information-tab" data-bs-toggle="tab" href="#information-section">Information</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="resume-tab" data-bs-toggle="tab" href="#resume-section">My Resume</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="jobs-tab" data-bs-toggle="tab" href="#vacancy-section">Saved Vacancies</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="applications-tab" data-bs-toggle="tab" href="#applications-section">My
-                Applications</a>
-            </li>
-          </ul>
+          <small class="text-muted">{{ current_user.username }}</small>
+          <div class="mt-4">
+            {% if current_user.current_role == "C" %}
+              <span class="badge bg-dark mb-3">Candidate Mode</span>
+              <a href="{% url "accounts:switch_role" %}" class="btn btn-dark w-100 mb-2">Switch to Employer</a>
+            {% else %}
+              <span class="badge bg-warning text-dark mb-3">Employer Mode</span>
+              <a href="{% url 'accounts:switch_role' %}" class="btn w-100 mb-2"
+                 style="background-color: #000; color: #ffc107; font-weight: bold; border: 2px solid #ffc107;">Switch to
+                Candidate</a>
+            {% endif %}
+          </div>
           <form method="post" action="{% url 'accounts:logout' %}">
             {% csrf_token %}
-            <button type="submit" class="btn btn-outline-danger mt-4 w-100" style="border-radius: 10px;">Log out
+            <button type="submit" class="btn w-100 mt-2"
+                    style="background-color: #fff; color: #dc3545; border: 1px solid #dc3545;">Log out
             </button>
           </form>
         </div>
       </div>
 
       <div class="col-lg-9">
-        <div class="tab-content">
-
-          <div class="tab-pane fade show active" id="information-section">
-            <div class="bg-white rounded shadow-sm p-4 mb-4">
-              <h5 class="fw-bold mb-3">Personal Information</h5>
-              <div class="row mb-3">
-                <div class="col-6"><strong>Full Name:</strong></div>
-                <div class="col-6">{{ current_user.first_name }} {{ current_user.last_name }}</div>
+        {% if current_user.current_role == "C" %}
+          <div class="bg-white rounded shadow-sm p-4 mb-4">
+            <h5 class="fw-bold mb-3">Personal Information</h5>
+            <div class="row mb-2">
+              <div class="col-6"><strong>Full Name:</strong></div>
+              <div class="col-6">{{ current_user.first_name }} {{ current_user.last_name }}</div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-6"><strong>Username:</strong></div>
+              <div class="col-6">{{ current_user.username }}</div>
+            </div>
+            {% if current_user.email %}
+              <div class="row mb-2">
+                <div class="col-6"><strong>Email:</strong></div>
+                <div class="col-6">{{ current_user.email }}</div>
               </div>
-              <div class="row mb-3">
-                <div class="col-6"><strong>Username:</strong></div>
-                <div class="col-6">{{ current_user.username }}</div>
-              </div>
-              {% if user.email %}
-                <div class="row mb-3">
-                  <div class="col-6"><strong>Email:</strong></div>
-                  <div class="col-6">{{ current_user.email }}</div>
+            {% endif %}
+            <div class="row mb-4">
+              <div class="col-6"><strong>Account Created:</strong></div>
+              <div class="col-6">{{ current_user.date_joined|date:"F d, Y" }}</div>
+            </div>
+            <a href="#" class="btn btn-outline-dark w-100">Edit Profile</a>
+          </div>
+
+          <div class="bg-white rounded shadow-sm p-4 mb-4">
+            <h5 class="fw-bold mb-3">Saved Vacancies</h5>
+            {% if current_user.saved_vacancies.count > 0 %}
+              <a href="{% url 'employers:vacancies_detail' current_user.saved_vacancies.last.pk %}"
+                 class="d-block mb-3 text-decoration-none text-dark">
+                <div class="bg-light p-4 rounded">
+                  <h6 class="fw-bold mb-1">{{ current_user.saved_vacancies.last.title }}</h6>
+                  <small class="text-muted">{{ current_user.saved_vacancies.last.company.name }}
+                    · {{ current_user.saved_vacancies.last.location }}</small>
                 </div>
-              {% endif %}
-              {% if current_user.first_name and current_user.last_name %}
-                <div class="row mb-3">
-                  <div class="col-6"><strong>Account Created:</strong></div>
-                  <div class="col-6">{{ current_user.date_joined|date:"F d, Y" }}</div>
-                </div>
-              {% endif %}
-              <a href="#" class="btn btn-outline-primary">Edit Profile</a>
-            </div>
+              </a>
+              <a href="{% url 'candidates:saved_vacancies' %}" class="btn btn-outline-dark w-100">View All</a>
+            {% else %}
+              <p class="text-muted">No saved vacancies.</p>
+            {% endif %}
           </div>
 
-          <div class="tab-pane fade" id="resume-section">
-            <div class="bg-white rounded shadow-sm p-4 mb-4">
-              <h5 class="fw-bold">Under development.</h5>
-            </div>
+          <div class="bg-white rounded shadow-sm p-4 mb-4">
+            <h5 class="fw-bold mb-3">Applications</h5>
+            {% if applications %}
+              <ul class="list-group list-group-flush">
+                {% for application in applications|slice:":3" %}
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{% url 'employers:vacancies_detail' application.vacancy.id %}"
+                       class="text-decoration-none text-dark">
+                      {{ application.vacancy.title }}
+                    </a>
+                    {% if application.status == "applied" %}
+                      <span class="badge bg-secondary">Applied</span>
+                    {% elif application.status == "interviewed" %}
+                      <span class="badge bg-primary">Interviewed</span>
+                    {% elif application.status == "hired" %}
+                      <span class="badge bg-success">Hired</span>
+                    {% elif application.status == "rejected" %}
+                      <span class="badge bg-danger">Rejected</span>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+              <a href="{% url 'candidates:applications' %}" class="btn btn-outline-dark mt-3 w-100">View All</a>
+            {% else %}
+              <p class="text-muted">No applications found.</p>
+            {% endif %}
+          </div>
+        {% else %}
+          <div class="p-4 mb-4" style="background-color: #f8f9fa; border: 2px solid #ffc107; border-radius: 8px;">
+            <h5 class="fw-bold mb-3 text-dark" style="border-left: 8px solid #ffc107; padding-left: 12px;">Company
+              Panel</h5>
+            {% if companies %}
+              <ul class="list-group list-group-flush mb-3">
+                {% for company in companies %}
+                  <li class="list-group-item" style="border-left: 4px solid #ffc107;">
+                    <strong>{{ company.name }}</strong><br>
+                    <small class="text-muted">{{ company.description|truncatechars:100 }}</small>
+                  </li>
+                {% endfor %}
+              </ul>
+              <a href="#" class="btn w-100 mb-2" style="background-color: #ffc107; color: #000; font-weight: bold;">Manage
+                Companies</a>
+            {% else %}
+              <p class="text-muted">You have not created any company.</p>
+            {% endif %}
+            <a href="#" class="btn w-100" style="background-color: #000; color: #ffc107; font-weight: bold;">+ Create
+              Company</a>
           </div>
 
-          <div class="tab-pane fade" id="vacancy-section">
-            <div class="bg-white rounded shadow-sm p-4 mb-4">
-              <h5 class="fw-bold mb-3">Saved Vacancies</h5>
-              {% if current_user.saved_vacancies.count > 0 %}
-
-                <a href="{% url 'candidates:jobs_detail' current_user.saved_vacancies.last.pk %}"
-                   class="vacancy-card d-block mb-4 text-decoration-none text-dark">
-                  <div class="bg-white shadow-sm p-5 h-100" style="min-height: 280px; border-radius: 24px;">
-
-                    {% if current_user.saved_vacancies.last.title %}
-                      <h3 class="fw-bold mb-3">{{ current_user.saved_vacancies.last.title }}</h3>
-                    {% endif %}
-
-                    {% if current_user.saved_vacancies.last.salary %}
-                      <p class="mb-2 fs-5 text-dark">{{ current_user.saved_vacancies.last.salary }} ₴</p>
-                    {% endif %}
-
-                    {% if current_user.saved_vacancies.last.company.name or current_user.saved_vacancies.last.location %}
-                      <div class="mb-3 text-muted">
-                        {% if current_user.saved_vacancies.last.company.name %}
-                          <strong>{{ current_user.saved_vacancies.last.company.name }}</strong>
-                        {% endif %}
-                        {% if current_user.saved_vacancies.last.location %}
-                          <span> · {{ current_user.saved_vacancies.last.location }}</span>
-                        {% endif %}
-                      </div>
-                    {% endif %}
-
-                    {% if current_user.saved_vacancies.last.description %}
-                      <div class="text-muted mb-0"
-                           style="line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                        {{ current_user.saved_vacancies.last.description|safe }}
-                      </div>
-                    {% endif %}
-
-                  </div>
-                </a>
-                <a href="{% url 'candidates:saved_vacancies' %}" class="btn btn-outline-dark">View All Saved
-                  Vacancies</a>
-              {% else %}
-                <h6 class="fw-bold mt-5">Unfortunately, you have not saved any vacancy</h6>
-              {% endif %}
-            </div>
+          <div class="p-4" style="background-color: #f8f9fa; border: 2px solid #000; border-radius: 8px;">
+            <h5 class="fw-bold mb-3 text-dark" style="border-left: 8px solid #000; padding-left: 12px;">Job
+              Listings</h5>
+            {% if jobs %}
+              <ul class="list-group list-group-flush mb-3">
+                {% for job in jobs|slice:":3" %}
+                  <li class="list-group-item" style="border-left: 4px solid #000;">
+                    <a href="#" class="text-decoration-none text-dark">
+                      {{ job.title }}
+                    </a>
+                    <br>
+                    <small class="text-muted">{{ job.created_at|date:"F j, Y" }}</small>
+                  </li>
+                {% endfor %}
+              </ul>
+              <a href="#" class="btn w-100 mb-2" style="background-color: #ffc107; color: #000; font-weight: bold;">Manage
+                Jobs</a>
+            {% else %}
+              <p class="text-muted">You have not posted any jobs.</p>
+            {% endif %}
+            <a href="#" class="btn w-100" style="background-color: #000; color: #ffc107; font-weight: bold;">+ Post
+              Job</a>
           </div>
-
-          <div class="tab-pane fade" id="applications-section">
-            <div class="bg-white rounded shadow-sm p-4 mb-4">
-              <h5 class="fw-bold mb-5">Applications</h5>
-
-              {% if applications %}
-                <ul class="list-group">
-                  {% for application in applications|slice:":3" %}
-                    <div class="list-group-item d-flex justify-content-between align-items-center mb-3 py-3 border-top">
-                      <a href="{% url 'candidates:jobs_detail' application.vacancy.id %}"
-                         class="d-flex w-100 text-dark text-decoration-none">
-                        <div class="d-flex flex-column">
-                          <h6 class="mb-1">{{ application.vacancy.title }}</h6>
-                          <small class="text-muted">{{ application.created_at|date:"F j, Y" }}</small>
-                        </div>
-                      </a>
-
-                      <div>
-                        {% if application.status == 'applied' %}
-                          <span class="badge text-muted">Applied</span>
-                        {% elif application.status == 'interviewed' %}
-                          <span class="badge text-primary">Interviewed</span>
-                        {% elif application.status == 'hired' %}
-                          <span class="badge text-success">Hired</span>
-                        {% elif application.status == 'rejected' %}
-                          <span class="badge text-danger">Rejected</span>
-                        {% endif %}
-                      </div>
-                    </div>
-                  {% endfor %}
-                </ul>
-                <a href="{% url 'candidates:applications' %}" class="btn btn-outline-dark">View All Applications</a>
-
-              {% else %}
-                <h6 class="fw-bold mt-5">Unfortunately, you have not applied for any vacancy</h6>
-              {% endif %}
-            </div>
-          </div>
-
-
-        </div>
+        {% endif %}
       </div>
     </div>
   </div>

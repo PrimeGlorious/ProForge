@@ -7,7 +7,7 @@
         <h1 class="mb-4 text-center">Saved vacancies</h1>
 
         {% for vacancy in vacancies %}
-          <a href="{% url 'candidates:jobs_detail' vacancy.pk %}"
+          <a href="{% url 'employers:vacancies_detail' vacancy.pk %}"
              class="vacancy-card d-block mb-4 text-decoration-none text-dark">
             <div class="bg-white shadow-sm p-5 h-100" style="min-height: 280px; border-radius: 24px;">
               {% if vacancy.title %}

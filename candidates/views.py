@@ -8,7 +8,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.generic import ListView, DetailView
 
-from candidates.models import Vacancy, Company
+from candidates.models import Vacancy
+from employers.models import Company
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -32,64 +33,6 @@ def about(request: HttpRequest) -> HttpResponse:
         request,
         "candidates/about.html"
     )
-
-
-class JobsListView(ListView):
-    model = Vacancy
-    context_object_name = "vacancies"
-    template_name = "candidates/vacancies_list.html"
-    paginate_by = 7
-
-    def get_queryset(self):
-        queryset = Vacancy.objects.all().order_by("-created_at")
-        text = self.request.GET.get("text", "")
-        salary = self.request.GET.get("salary")
-        location = self.request.GET.get("location")
-        company = self.request.GET.get("company")
-        sort_by = self.request.GET.get("sort")
-
-        if text:
-            return queryset.filter(
-                Q(title__icontains=text) | Q(description__icontains=text)
-            )
-        if salary:
-            queryset = queryset.filter(salary__gte=salary)
-        if location:
-            queryset = queryset.filter(location__icontains=location)
-        if company:
-            queryset = queryset.filter(company__name=company)
-
-        if sort_by == "salary_desc":
-            queryset = queryset.order_by("-salary")
-        elif sort_by == "salary_asc":
-            queryset = queryset.order_by("salary")
-        elif sort_by == "date":
-            queryset = queryset.order_by("-created_at")
-
-        return queryset
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(JobsListView, self).get_context_data(**kwargs)
-
-        text = self.request.GET.get("text", "")
-
-        context["search_query"] = text
-        context["filter"] = {
-            "salary": self.request.GET.get("salary", ""),
-            "title": self.request.GET.get("title", ""),
-            "location": self.request.GET.get("location", ""),
-            "company": self.request.GET.get("company", ""),
-            "sort": self.request.GET.get("sort", ""),
-        }
-        context["companies"] = Company.objects.all()
-
-        return context
-
-
-class JobsDetailView(DetailView):
-    model = Vacancy
-    context_object_name = "vacancy"
-    template_name = "candidates/vacancies_detail.html"
 
 
 def profile(request: HttpRequest) -> HttpResponse:
@@ -123,7 +66,7 @@ def apply(
 
     return redirect(
         reverse(
-            "candidates:jobs_detail",
+            "employers:vacancies_detail",
             args=[pk]
         )
     )
@@ -143,7 +86,7 @@ def toggle_save_vacancy(
 
     return redirect(
         reverse(
-            "candidates:jobs_detail",
+            "employers:vacancies_detail",
             args=[pk]
         )
     )
