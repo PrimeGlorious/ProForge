@@ -42,8 +42,27 @@ INSTALLED_APPS = [
     "ckeditor",
 ]
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_CONFIGS = {
+    "default": {
+        "toolbar": [
+            {"name": "basicstyles", "items": ["Bold", "Italic", "Underline"]},
+            {"name": "paragraph", "items": ["NumberedList", "BulletedList"]},
+            {"name": "styles", "items": ["Format"]},
+            {"name": "links", "items": ["Link", "Unlink"]},
+        ],
+        "format_tags": "p;h3;h4;h5",
+        "height": 300,
+        "width": "100%",
+        "removePlugins": "image,iframe,flash,smiley,table,forms,save,newpage,preview,print,templates",
+        "toolbarCanCollapse": False,
+        "forcePasteAsPlainText": True,
+        "contentsCss": ["/static/css/ckeditor_custom.css"],
+        "bodyClass": "editor-body",
+        "resize_enabled": False
+    }
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

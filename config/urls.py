@@ -23,4 +23,5 @@ urlpatterns = [
     path("", include("candidates.urls", namespace="candidates")),
     path("employers/", include("employers.urls", namespace="employers")),
     path("accounts/", include("accounts.urls", namespace="accounts")),
+    path("ckeditor/", include("ckeditor_uploader.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

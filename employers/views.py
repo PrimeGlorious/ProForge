@@ -1,7 +1,9 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.shortcuts import render
-from django.views.generic import DetailView, ListView
+from django.urls import reverse
+from django.views.generic import DetailView, ListView, CreateView
 
+from employers.forms import CompanyForm
 from employers.models import Company, Vacancy
 
 
@@ -67,3 +69,16 @@ class VacanciesDetailView(DetailView):
     model = Vacancy
     context_object_name = "vacancy"
     template_name = "employers/vacancies_detail.html"
+
+
+class CompanyCreateView(LoginRequiredMixin, CreateView):
+    model = Company
+    form_class = CompanyForm
+    template_name = "employers/company_form.html"
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("employers:company_detail", kwargs={"pk": self.object.pk})

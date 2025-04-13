@@ -118,7 +118,7 @@
             {% else %}
               <p class="text-muted">You have not created any company.</p>
             {% endif %}
-            <a href="#" class="btn w-100" style="background-color: #000; color: #ffc107; font-weight: bold;">+ Create
+            <a href="{% url 'employers:company_create' %}" class="btn w-100" style="background-color: #000; color: #ffc107; font-weight: bold;">+ Create
               Company</a>
           </div>
 

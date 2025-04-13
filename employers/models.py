@@ -6,7 +6,7 @@ from django.db import models
 class Company(models.Model):
     name = models.CharField(max_length=100)
     description = RichTextField()
-    website = models.URLField(null=True)
+    website = models.URLField(blank=True, null=True)
     owner = models.ForeignKey(
         to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
