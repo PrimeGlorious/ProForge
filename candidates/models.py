@@ -7,7 +7,6 @@ class Company(models.Model):
     name = models.CharField(max_length=100)
     description = RichTextField()
     website = models.URLField(null=True)
-    # logo = models.ImageField(upload_to="company_logos", null=True)
 
 
 class Vacancy(models.Model):
@@ -25,10 +24,17 @@ class Vacancy(models.Model):
 
 
 class Candidate(AbstractUser):
-    # profile_image = models.ImageField(upload_to="profile_images", null=True)
-    # resume = models.FileField(upload_to="resumes", null=True)
+    class UserRoles(models.TextChoices):
+        CANDIDATE = "C", "Candidate"
+        EMPLOYER = "E", "Employer"
+
     vacancies = models.ManyToManyField(to=Vacancy, related_name="candidates", through="Application", blank=True)
     saved_vacancies = models.ManyToManyField(to=Vacancy, related_name="saved_by", blank=True)
+    current_role = models.CharField(
+        max_length=15,
+        choices=UserRoles.choices,
+        default=UserRoles.CANDIDATE,
+    )
 
 
 class Application(models.Model):
