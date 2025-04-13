@@ -1,17 +1,14 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy, reverse
-from django.views import generic
+from django.urls import reverse
 from django.views.generic import ListView, DetailView
 
-from candidates.forms import CandidateRegistrationForm, VacancySearchForm
-from candidates.models import Vacancy, Company, Candidate
+from candidates.models import Vacancy, Company
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -93,12 +90,6 @@ class JobsDetailView(DetailView):
     model = Vacancy
     context_object_name = "vacancy"
     template_name = "candidates/vacancies_detail.html"
-
-
-class RegisterView(generic.CreateView):
-    form_class = CandidateRegistrationForm
-    success_url = reverse_lazy("candidates:index")
-    template_name = "registration/signup.html"
 
 
 def profile(request: HttpRequest) -> HttpResponse:

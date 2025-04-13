@@ -18,11 +18,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 # from django.contrib import admin
 from django.urls import path, include
-from candidates.views import RegisterView
 
 
 urlpatterns = [
     path("", include("candidates.urls", namespace="candidates")),
-    path("accounts/", include("django.contrib.auth.urls")),
-    path("register/", RegisterView.as_view(), name="register"),
+    path("accounts/", include("accounts.urls", namespace="accounts")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
