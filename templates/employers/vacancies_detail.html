@@ -18,16 +18,12 @@
           <p class="fs-4 mb-2 text-dark">{{ vacancy.salary }} ₴</p>
         {% endif %}
 
-        {% if vacancy.company.name or vacancy.location %}
-          <div class="mb-2 text-muted">
-            {% if vacancy.company.name %}
-              <strong>{{ vacancy.company.name }}</strong>
-            {% endif %}
-            {% if vacancy.location %}
-              <span> · {{ vacancy.location }}</span>
-            {% endif %}
-          </div>
-        {% endif %}
+        <div class="mb-2 text-muted">
+          <a href="{% url 'employers:company_detail' vacancy.company.pk %}"><strong>{{ vacancy.company.name }}</strong></a>
+          {% if vacancy.location %}
+            <span> · {{ vacancy.location }}</span>
+          {% endif %}
+        </div>
 
         {% if vacancy.contacts %}
           <div class="mb-4 text-muted">

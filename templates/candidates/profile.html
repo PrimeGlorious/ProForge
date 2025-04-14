@@ -104,21 +104,23 @@
           <div class="p-4 mb-4" style="background-color: #f8f9fa; border: 2px solid #ffc107; border-radius: 8px;">
             <h5 class="fw-bold mb-3 text-dark" style="border-left: 8px solid #ffc107; padding-left: 12px;">Company
               Panel</h5>
-            {% if companies %}
+            {% if current_user.companies %}
               <ul class="list-group list-group-flush mb-3">
-                {% for company in companies %}
-                  <li class="list-group-item" style="border-left: 4px solid #ffc107;">
-                    <strong>{{ company.name }}</strong><br>
-                    <small class="text-muted">{{ company.description|truncatechars:100 }}</small>
+                {% for company in current_user.companies.all|slice:":5" %}
+                  <li class="list-group-item mt-3">
+                    <a href="{% url 'employers:company_detail' company.pk %}" class="text-dark">
+                      <strong>{{ company.name }}</strong>
+                    </a>
                   </li>
                 {% endfor %}
               </ul>
-              <a href="#" class="btn w-100 mb-2" style="background-color: #ffc107; color: #000; font-weight: bold;">Manage
+              <a href="{% url 'employers:manage_companies' %}" class="btn w-100 mb-2" style="background-color: #ffc107; color: #000; font-weight: bold;">Manage
                 Companies</a>
             {% else %}
               <p class="text-muted">You have not created any company.</p>
             {% endif %}
-            <a href="{% url 'employers:company_create' %}" class="btn w-100" style="background-color: #000; color: #ffc107; font-weight: bold;">+ Create
+            <a href="{% url 'employers:company_create' %}" class="btn w-100"
+               style="background-color: #000; color: #ffc107; font-weight: bold;">+ Create
               Company</a>
           </div>
 

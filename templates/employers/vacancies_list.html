@@ -17,16 +17,12 @@
                   {% if vacancy.salary %}
                     <p class="mb-2 fs-5 text-dark">{{ vacancy.salary }} ₴</p>
                   {% endif %}
-                  {% if vacancy.company.name or vacancy.location %}
-                    <div class="mb-3 text-muted">
-                      {% if vacancy.company.name %}
-                        <strong>{{ vacancy.company.name }}</strong>
-                      {% endif %}
-                      {% if vacancy.location %}
-                        <span> · {{ vacancy.location }}</span>
-                      {% endif %}
-                    </div>
-                  {% endif %}
+                  <div class="mb-3 text-muted">
+                    <strong>{{ vacancy.company.name }}</strong>
+                    {% if vacancy.location %}
+                      <span> · {{ vacancy.location }}</span>
+                    {% endif %}
+                  </div>
                   {% if vacancy.description %}
                     <div class="text-muted mb-0"
                          style="line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">

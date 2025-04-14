@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container py-5">
+    <div class="p-5 bg-white rounded shadow-sm" style="border: 3px solid #ffc107; max-width: 800px; margin: auto;">
+      <h2 class="fw-bold mb-4" style="border-left: 6px solid #ffc107; padding-left: 12px;">Edit Company: {{ company.name }}</h2>
+
+      <form method="post" action="">
+        {% csrf_token %}
+        {{ form.media }}
+
+        <div class="mb-4">
+          <label for="id_name" class="form-label fw-bold text-dark">Company Name</label>
+          <input type="text" name="name" id="id_name"
+                 class="form-control bg-light border border-dark rounded-1 shadow-sm px-3 py-2"
+                 placeholder="Enter company name"
+                 value="{{ form.name.value|default_if_none:'' }}">
+          {% if form.name.errors %}
+            <div class="alert alert-danger mt-2" style="font-size: 0.875rem; padding: 5px 10px;">
+              {% for error in form.name.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="mb-4">
+          <label for="id_website" class="form-label fw-bold text-dark">Website</label>
+          <input type="url" name="website" id="id_website"
+                 class="form-control bg-light border border-dark rounded-1 shadow-sm px-3 py-2"
+                 placeholder="https://example.com"
+                 value="{{ form.website.value|default_if_none:'' }}">
+          {% if form.website.errors %}
+            <div class="alert alert-danger mt-2" style="font-size: 0.875rem; padding: 5px 10px;">
+              {% for error in form.website.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="mb-4">
+          <label for="id_description" class="form-label fw-bold text-dark">Description</label>
+          {{ form.description }}
+          {% if form.description.errors %}
+            <div class="alert alert-danger mt-2" style="font-size: 0.875rem; padding: 5px 10px;">
+              {% for error in form.description.errors %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        <button type="submit"
+                class="btn w-100 mt-3"
+                style="background-color: #000; color: #ffc107; font-weight: bold; padding: 12px; font-size: 1.1rem;">
+          Save Changes
+        </button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

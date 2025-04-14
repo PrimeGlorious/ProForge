@@ -29,12 +29,13 @@
                 <div class="text-muted mb-2" style="line-height: 1.5;">
                   {{ vacancy.description|striptags|truncatechars:160 }}
                 </div>
-                <a href="{% url 'employers:vacancy_detail' vacancy.pk %}" class="text-decoration-none">View Vacancy</a>
+                <a href="{% url 'employers:vacancies_detail' vacancy.pk %}" class="text-decoration-none">View Vacancy</a>
               </div>
             </div>
           {% endfor %}
         </div>
       </div>
     {% endif %}
+
   </div>
 {% endblock %}

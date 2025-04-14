@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.urls import reverse
-from django.views.generic import DetailView, ListView, CreateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
 from employers.forms import CompanyForm
 from employers.models import Company, Vacancy
@@ -81,4 +81,26 @@ class CompanyCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("employers:company_detail", kwargs={"pk": self.object.pk})
+        return reverse_lazy("employers:company_detail", kwargs={"pk": self.object.pk})
+
+
+class ManageCompaniesView(LoginRequiredMixin, ListView):
+    model = Company
+    template_name = "employers/manage_companies.html"
+    context_object_name = "companies"
+
+    def get_queryset(self):
+        return Company.objects.filter(owner=self.request.user)
+
+class EditCompanyView(LoginRequiredMixin, UpdateView):
+    model = Company
+    form_class = CompanyForm
+    template_name = "employers/edit_company.html"
+
+    def get_success_url(self):
+        return reverse_lazy("employers:company_detail", kwargs={"pk": self.object.pk})
+
+class DeleteCompanyView(LoginRequiredMixin, DeleteView):
+    model = Company
+    template_name = "employers/delete_company.html"
+    success_url = reverse_lazy("employers:manage_companies")
