@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
-from employers.forms import CompanyForm
+from employers.forms import CompanyForm, VacancyForm
 from employers.models import Company, Vacancy
 
 
@@ -104,3 +104,21 @@ class DeleteCompanyView(LoginRequiredMixin, DeleteView):
     model = Company
     template_name = "employers/delete_company.html"
     success_url = reverse_lazy("employers:manage_companies")
+
+
+class VacanciesCreateView(LoginRequiredMixin, CreateView):
+    model = Vacancy
+    form_class = VacancyForm
+    template_name = "employers/vacancies_create.html"
+
+    def get_success_url(self):
+        return reverse_lazy("employers:vacancies_detail", kwargs={"pk": self.object.pk})
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        return response
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["user"] = self.request.user
+        return kwargs
