@@ -122,3 +122,12 @@ class VacanciesCreateView(LoginRequiredMixin, CreateView):
         kwargs = super().get_form_kwargs()
         kwargs["user"] = self.request.user
         return kwargs
+
+
+class VacanciesManageView(LoginRequiredMixin, ListView):
+    model = Vacancy
+    context_object_name = "vacancies"
+    template_name = "employers/vacancies_manage.html"
+
+    def get_queryset(self):
+        return Vacancy.objects.filter(company__owner=self.request.user)
