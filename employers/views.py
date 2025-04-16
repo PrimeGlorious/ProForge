@@ -131,3 +131,9 @@ class VacanciesManageView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Vacancy.objects.filter(company__owner=self.request.user)
+
+
+class VacanciesDeleteView(LoginRequiredMixin, DeleteView):
+    model = Vacancy
+    template_name = "employers/vacancies_delete.html"
+    success_url = reverse_lazy("employers:vacancies_manage")
