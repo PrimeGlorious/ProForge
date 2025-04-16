@@ -13,6 +13,9 @@ class Company(models.Model):
         related_name="companies"
     )
 
+    def __str__(self):
+        return self.name
+
 
 class Vacancy(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -26,3 +29,6 @@ class Vacancy(models.Model):
     location = models.CharField(max_length=100, null=True, blank=True)
     contacts = models.CharField(max_length=100, null=True, blank=True)
     description = RichTextField()
+
+    def __str__(self):
+        return self.title

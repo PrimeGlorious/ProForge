@@ -18,6 +18,9 @@ class Candidate(AbstractUser):
         default=UserRoles.CANDIDATE,
     )
 
+    def __str__(self):
+        return self.username + f" ({self.first_name} {self.last_name})"
+
 
 class Application(models.Model):
     class Status(models.TextChoices):

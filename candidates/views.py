@@ -39,10 +39,12 @@ def profile(request: HttpRequest) -> HttpResponse:
     current_user = request.user
 
     applications = current_user.applications.all().order_by("-created_at")
+    vacancies_count = Vacancy.objects.filter(company__owner=current_user).count()
 
     context = {
         "applications": applications,
         "current_user": current_user,
+        "vacancies_count": vacancies_count
     }
 
     return render(
