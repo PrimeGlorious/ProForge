@@ -33,10 +33,15 @@ class VacancyForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop("user", None)
+        self.user = kwargs.pop("user", None)
+        self.is_update = kwargs.pop("is_update", False)
         super().__init__(*args, **kwargs)
-        self.user = user
-        self.fields["company"].queryset = Company.objects.filter(owner=self.user)
+
+
+        if not self.is_update:
+            self.fields["company"].queryset = Company.objects.filter(owner=self.user)
+        else:
+            self.fields.pop("company")
 
 
     def clean_title(self):
@@ -51,10 +56,15 @@ class VacancyForm(forms.ModelForm):
         if salary:
             if not isinstance(salary, int) or salary < 1:
                 raise forms.ValidationError("Salary must be a positive integer.")
+        else:
+            raise forms.ValidationError("This field cannot be empty.")
 
         return salary
 
     def clean_company(self):
+        if self.is_update:
+            return self.instance.company
+
         company = self.cleaned_data.get("company")
         if not company:
             raise forms.ValidationError("This field cannot be empty.")

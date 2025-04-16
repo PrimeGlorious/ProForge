@@ -137,3 +137,18 @@ class VacanciesDeleteView(LoginRequiredMixin, DeleteView):
     model = Vacancy
     template_name = "employers/vacancies_delete.html"
     success_url = reverse_lazy("employers:vacancies_manage")
+
+
+class VacanciesUpdateView(LoginRequiredMixin, UpdateView):
+    model = Vacancy
+    form_class = VacancyForm
+    template_name = "employers/vacancies_update.html"
+
+    def get_success_url(self):
+        return reverse_lazy("employers:vacancies_detail", kwargs={"pk": self.object.pk})
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["user"] = self.request.user
+        kwargs["is_update"] = True
+        return kwargs
