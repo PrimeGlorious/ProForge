@@ -8,6 +8,7 @@ from django.views.generic import DetailView, ListView, CreateView, UpdateView, D
 from candidates.models import Application
 from employers.forms import CompanyForm, VacancyForm, ApplicationStatusForm
 from employers.models import Company, Vacancy
+from employers.mixins import CompanyOwnerRequiredMixin, VacancyOwnerRequiredMixin
 
 
 class CompanyDetailView(DetailView):
@@ -95,7 +96,8 @@ class ManageCompaniesView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Company.objects.filter(owner=self.request.user)
 
-class EditCompanyView(LoginRequiredMixin, UpdateView):
+
+class EditCompanyView(CompanyOwnerRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Company
     form_class = CompanyForm
     template_name = "employers/edit_company.html"
@@ -103,7 +105,8 @@ class EditCompanyView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy("employers:company_detail", kwargs={"pk": self.object.pk})
 
-class DeleteCompanyView(LoginRequiredMixin, DeleteView):
+
+class DeleteCompanyView(CompanyOwnerRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Company
     template_name = "employers/delete_company.html"
     success_url = reverse_lazy("employers:manage_companies")
@@ -136,13 +139,13 @@ class VacanciesManageView(LoginRequiredMixin, ListView):
         return Vacancy.objects.filter(company__owner=self.request.user)
 
 
-class VacanciesDeleteView(LoginRequiredMixin, DeleteView):
+class VacanciesDeleteView(VacancyOwnerRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Vacancy
     template_name = "employers/vacancies_delete.html"
     success_url = reverse_lazy("employers:vacancies_manage")
 
 
-class VacanciesUpdateView(LoginRequiredMixin, UpdateView):
+class VacanciesUpdateView(VacancyOwnerRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Vacancy
     form_class = VacancyForm
     template_name = "employers/vacancies_update.html"
@@ -157,7 +160,7 @@ class VacanciesUpdateView(LoginRequiredMixin, UpdateView):
         return kwargs
 
 
-class VacanciesModerateView(LoginRequiredMixin, DetailView):
+class VacanciesModerateView(VacancyOwnerRequiredMixin, LoginRequiredMixin, DetailView):
     model = Vacancy
     template_name = "employers/vacancies_moderate.html"
     context_object_name = "vacancy"
