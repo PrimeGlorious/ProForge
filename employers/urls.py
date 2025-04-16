@@ -11,7 +11,8 @@ from employers.views import (
     VacanciesCreateView,
     VacanciesManageView,
     VacanciesDeleteView,
-    VacanciesUpdateView
+    VacanciesUpdateView,
+    VacanciesModerateView
 )
 
 urlpatterns = [
@@ -26,6 +27,7 @@ urlpatterns = [
     path("vacancies/manage/", VacanciesManageView.as_view(), name="vacancies_manage"),
     path("vacancies/<int:pk>/delete/", VacanciesDeleteView.as_view(), name="vacancies_delete"),
     path("vacancies/<int:pk>/update/", VacanciesUpdateView.as_view(), name="vacancies_update"),
+    path("vacancies/<int:pk>/moderate/", VacanciesModerateView.as_view(), name="vacancies_moderate"),
 ]
 
 app_name = "employers"

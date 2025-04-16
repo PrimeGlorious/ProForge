@@ -1,6 +1,8 @@
 from django import forms
 from ckeditor.widgets import CKEditorWidget
-from .models import Company, Vacancy
+
+from candidates.models import Application
+from employers.models import Company, Vacancy
 
 
 class CompanyForm(forms.ModelForm):
@@ -75,3 +77,12 @@ class VacancyForm(forms.ModelForm):
         if not description:
             raise forms.ValidationError("This field cannot be empty.")
         return description
+
+
+class ApplicationStatusForm(forms.ModelForm):
+    class Meta:
+        model = Application
+        fields = ["status"]
+        widgets = {
+            "status": forms.Select(choices=Application.Status.choices)
+        }

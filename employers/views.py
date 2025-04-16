@@ -1,9 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from django.forms import modelformset_factory
+from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
-from employers.forms import CompanyForm, VacancyForm
+from candidates.models import Application
+from employers.forms import CompanyForm, VacancyForm, ApplicationStatusForm
 from employers.models import Company, Vacancy
 
 
@@ -152,3 +155,35 @@ class VacanciesUpdateView(LoginRequiredMixin, UpdateView):
         kwargs["user"] = self.request.user
         kwargs["is_update"] = True
         return kwargs
+
+
+class VacanciesModerateView(LoginRequiredMixin, DetailView):
+    model = Vacancy
+    template_name = "employers/vacancies_moderate.html"
+    context_object_name = "vacancy"
+
+    def get_queryset(self):
+        return Vacancy.objects.filter(company__owner=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        application_formset = modelformset_factory(
+            Application,
+            form=ApplicationStatusForm,
+            extra=0
+        )
+        formset = application_formset(queryset=self.object.applications.select_related("candidate"))
+        context["formset"] = formset
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        application_formset = modelformset_factory(
+            Application,
+            fields=["status"],
+            extra=0
+        )
+        formset = application_formset(request.POST)
+        if formset.is_valid():
+            formset.save()
+        return redirect("employers:vacancies_moderate", pk=self.object.pk)
