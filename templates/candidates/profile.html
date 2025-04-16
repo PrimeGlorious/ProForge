@@ -53,7 +53,6 @@
               <div class="col-6"><strong>Account Created:</strong></div>
               <div class="col-6">{{ current_user.date_joined|date:"F d, Y" }}</div>
             </div>
-            <a href="#" class="btn btn-outline-dark w-100">Edit Profile</a>
           </div>
 
           <div class="bg-white rounded shadow-sm p-4 mb-4">
@@ -104,7 +103,7 @@
           <div class="p-4 mb-4" style="background-color: #f8f9fa; border: 2px solid #ffc107; border-radius: 8px;">
             <h5 class="fw-bold mb-3 text-dark">Company
               Panel</h5>
-            {% if current_user.companies %}
+            {% if current_user.companies.all %}
               <ul class="list-group list-group-flush mb-3">
                 {% for company in current_user.companies.all|slice:":5" %}
                   <li class="list-group-item mt-3">
@@ -118,7 +117,7 @@
                  style="background-color: #ffc107; color: #000; font-weight: bold;">Manage
                 Companies</a>
             {% else %}
-              <p class="text-muted">You have not created any company.</p>
+              <p class="text-muted">You have not created any companies.</p>
             {% endif %}
             <a href="{% url 'employers:company_create' %}" class="btn w-100"
                style="background-color: #000; color: #ffc107; font-weight: bold;">+ Create
