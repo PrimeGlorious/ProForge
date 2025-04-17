@@ -10,8 +10,17 @@ class Candidate(AbstractUser):
         CANDIDATE = "C", "Candidate"
         EMPLOYER = "E", "Employer"
 
-    vacancies = models.ManyToManyField(to=Vacancy, related_name="candidates", through="Application", blank=True)
-    saved_vacancies = models.ManyToManyField(to=Vacancy, related_name="saved_by", blank=True)
+    vacancies = models.ManyToManyField(
+        to=Vacancy,
+        related_name="candidates",
+        through="Application",
+        blank=True
+    )
+    saved_vacancies = models.ManyToManyField(
+        to=Vacancy,
+        related_name="saved_by",
+        blank=True
+    )
     current_role = models.CharField(
         max_length=15,
         choices=UserRoles.choices,

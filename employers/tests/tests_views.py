@@ -8,7 +8,10 @@ class EmployersViewsTestCase(BaseTestCase):
 
     def test_company_detail_view(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.get(reverse("employers:company_detail", kwargs={"pk": self.company.pk}))
+        response = self.client.get(reverse(
+            "employers:company_detail",
+            kwargs={"pk": self.company.pk})
+        )
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Test Company")
@@ -32,11 +35,17 @@ class EmployersViewsTestCase(BaseTestCase):
 
     def test_vacancies_delete_view(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.post(reverse("employers:vacancies_delete", kwargs={"pk": self.vacancy.pk}))
+        response = self.client.post(reverse(
+            "employers:vacancies_delete",
+            kwargs={"pk": self.vacancy.pk})
+        )
         self.assertRedirects(response, reverse("employers:vacancies_manage"))
         self.assertEqual(Vacancy.objects.count(), 0)
 
     def test_vacancies_update_view(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.get(reverse("employers:vacancies_update", kwargs={"pk": self.vacancy.pk}))
+        response = self.client.get(reverse(
+            "employers:vacancies_update",
+            kwargs={"pk": self.vacancy.pk})
+        )
         self.assertEqual(response.status_code, 200)

@@ -7,7 +7,10 @@ from employers.forms import VacancyForm, CompanyForm
 
 class CompanyFormTestCase(TestCase):
     def setUp(self):
-        self.user = get_user_model().objects.create_user(username="testuser", password="password123")
+        self.user = get_user_model().objects.create_user(
+            username="testuser",
+            password="password123"
+        )
         self.company_data = {
             "name": "Test Company",
             "website": "https://example.com",
@@ -29,9 +32,16 @@ class CompanyFormTestCase(TestCase):
 
 class VacancyFormTestCase(TestCase):
     def setUp(self):
-        self.user = get_user_model().objects.create_user(username="testuser", password="password123")
-        self.company = Company.objects.create(name="Test Company", website="https://example.com",
-                                              description="This is a test company", owner=self.user)
+        self.user = get_user_model().objects.create_user(
+            username="testuser",
+            password="password123"
+        )
+        self.company = Company.objects.create(
+            name="Test Company",
+            website="https://example.com",
+            description="This is a test company",
+            owner=self.user
+        )
         self.vacancy_data = {
             "title": "Test Vacancy",
             "company": self.company,

@@ -2,13 +2,26 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.forms import modelformset_factory
 from django.shortcuts import redirect
-from django.urls import reverse, reverse_lazy
-from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.views.generic import (
+    DetailView,
+    ListView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
 
 from candidates.models import Application
-from employers.forms import CompanyForm, VacancyForm, ApplicationStatusForm
+from employers.forms import (
+    CompanyForm,
+    VacancyForm,
+    ApplicationStatusForm
+)
 from employers.models import Company, Vacancy
-from employers.mixins import CompanyOwnerRequiredMixin, VacancyOwnerRequiredMixin
+from employers.mixins import (
+    CompanyOwnerRequiredMixin,
+    VacancyOwnerRequiredMixin
+)
 
 
 class CompanyDetailView(DetailView):
@@ -175,7 +188,11 @@ class VacanciesModerateView(VacancyOwnerRequiredMixin, LoginRequiredMixin, Detai
             form=ApplicationStatusForm,
             extra=0
         )
-        formset = application_formset(queryset=self.object.applications.select_related("candidate"))
+        formset = application_formset(
+            queryset=self.object.applications.select_related(
+                "candidate"
+            )
+        )
         context["formset"] = formset
         return context
 

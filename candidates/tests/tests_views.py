@@ -26,8 +26,14 @@ class CandidateViewsTestCase(BaseTestCase):
 
     def test_toggle_save_vacancy_view(self):
         self.client.login(username="testuser", password="password123")
-        response = self.client.post(reverse("candidates:toggle_save_vacancy", args=[self.vacancy.id]))
-        self.assertRedirects(response, reverse("employers:vacancies_detail", args=[self.vacancy.id]))
+        response = self.client.post(reverse(
+            "candidates:toggle_save_vacancy",
+            args=[self.vacancy.id])
+        )
+        self.assertRedirects(response, reverse(
+            "employers:vacancies_detail",
+            args=[self.vacancy.id])
+                             )
         self.assertIn(self.vacancy, self.candidate.saved_vacancies.all())
 
     def test_saved_vacancies_view(self):
