@@ -1,13 +1,13 @@
 from django.urls import path
 
 from employers.views import (
-    CompanyDetailView,
+    CompaniesDetailView,
     VacanciesListView,
     VacanciesDetailView,
-    CompanyCreateView,
-    ManageCompaniesView,
-    EditCompanyView,
-    DeleteCompanyView,
+    CompaniesCreateView,
+    CompaniesManageView,
+    CompaniesUpdateView,
+    CompaniesDeleteView,
     VacanciesCreateView,
     VacanciesManageView,
     VacanciesDeleteView,
@@ -16,14 +16,14 @@ from employers.views import (
 )
 
 urlpatterns = [
-    path("companies/<int:pk>/", CompanyDetailView.as_view(), name="company_detail"),
-    path("companies/create/", CompanyCreateView.as_view(), name="company_create"),
-    path("companies/manage/", ManageCompaniesView.as_view(), name="manage_companies"),
-    path("companies/edit/<int:pk>/", EditCompanyView.as_view(), name="edit_company"),
+    path("companies/<int:pk>/", CompaniesDetailView.as_view(), name="companies_detail"),
+    path("companies/create/", CompaniesCreateView.as_view(), name="companies_create"),
+    path("companies/manage/", CompaniesManageView.as_view(), name="companies_manage"),
+    path("companies/<int:pk>/update/", CompaniesUpdateView.as_view(), name="companies_update"),
     path(
-        "companies/delete/<int:pk>/",
-        DeleteCompanyView.as_view(),
-        name="delete_company"
+        "companies/<int:pk>/delete/",
+        CompaniesDeleteView.as_view(),
+        name="companies_delete"
     ),
     path("vacancies/", VacanciesListView.as_view(), name="vacancies_list"),
     path("vacancies/<int:pk>/", VacanciesDetailView.as_view(), name="vacancies_detail"),

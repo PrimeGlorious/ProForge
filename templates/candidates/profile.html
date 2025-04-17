@@ -108,19 +108,19 @@
               <ul class="list-group list-group-flush mb-3">
                 {% for company in current_user.companies.all|slice:":5" %}
                   <li class="list-group-item mt-3">
-                    <a href="{% url 'employers:company_detail' company.pk %}" class="text-dark">
+                    <a href="{% url 'employers:companies_detail' company.pk %}" class="text-dark">
                       <strong>{{ company.name }}</strong>
                     </a>
                   </li>
                 {% endfor %}
               </ul>
-              <a href="{% url 'employers:manage_companies' %}" class="btn w-100 mb-2"
+              <a href="{% url 'employers:companies_manage' %}" class="btn w-100 mb-2"
                  style="background-color: #ffc107; color: #000; font-weight: bold;">Manage
                 Companies</a>
             {% else %}
               <p class="text-muted">You have not created any companies.</p>
             {% endif %}
-            <a href="{% url 'employers:company_create' %}" class="btn w-100"
+            <a href="{% url 'employers:companies_create' %}" class="btn w-100"
                style="background-color: #000; color: #ffc107; font-weight: bold;">+ Create
               Company</a>
           </div>
@@ -133,7 +133,7 @@
                   {% for company in current_user.companies.all|slice:":5" %}
                     {% if company.vacancies.all %}
                       <li class="list-group-item mb-3" style="border-left: 4px solid #000; padding: 15px;">
-                        <a href="{% url 'employers:company_detail' company.pk %}">
+                        <a href="{% url 'employers:companies_detail' company.pk %}">
                           <h6 class="fw-bold mb-2"
                               style="font-size: 1.2rem; color: #000; border-bottom: 2px solid #ccc; padding-bottom: 5px;">
                             {{ company.name }}

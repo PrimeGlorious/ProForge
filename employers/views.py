@@ -24,10 +24,10 @@ from employers.mixins import (
 )
 
 
-class CompanyDetailView(DetailView):
+class CompaniesDetailView(DetailView):
     model = Company
     context_object_name = "company"
-    template_name = "employers/company_detail.html"
+    template_name = "employers/companies_detail.html"
 
 
 class VacanciesListView(ListView):
@@ -88,41 +88,41 @@ class VacanciesDetailView(DetailView):
     template_name = "employers/vacancies_detail.html"
 
 
-class CompanyCreateView(LoginRequiredMixin, CreateView):
+class CompaniesCreateView(LoginRequiredMixin, CreateView):
     model = Company
     form_class = CompanyForm
-    template_name = "employers/company_form.html"
+    template_name = "employers/companies_create.html"
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy("employers:company_detail", kwargs={"pk": self.object.pk})
+        return reverse_lazy("employers:companies_detail", kwargs={"pk": self.object.pk})
 
 
-class ManageCompaniesView(LoginRequiredMixin, ListView):
+class CompaniesManageView(LoginRequiredMixin, ListView):
     model = Company
-    template_name = "employers/manage_companies.html"
+    template_name = "employers/companies_manage.html"
     context_object_name = "companies"
 
     def get_queryset(self):
         return Company.objects.filter(owner=self.request.user)
 
 
-class EditCompanyView(CompanyOwnerRequiredMixin, LoginRequiredMixin, UpdateView):
+class CompaniesUpdateView(CompanyOwnerRequiredMixin, LoginRequiredMixin, UpdateView):
     model = Company
     form_class = CompanyForm
-    template_name = "employers/edit_company.html"
+    template_name = "employers/companies_update.html"
 
     def get_success_url(self):
-        return reverse_lazy("employers:company_detail", kwargs={"pk": self.object.pk})
+        return reverse_lazy("employers:companies_detail", kwargs={"pk": self.object.pk})
 
 
-class DeleteCompanyView(CompanyOwnerRequiredMixin, LoginRequiredMixin, DeleteView):
+class CompaniesDeleteView(CompanyOwnerRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Company
-    template_name = "employers/delete_company.html"
-    success_url = reverse_lazy("employers:manage_companies")
+    template_name = "employers/companies_delete.html"
+    success_url = reverse_lazy("employers:companies_manage")
 
 
 class VacanciesCreateView(LoginRequiredMixin, CreateView):
