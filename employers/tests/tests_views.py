@@ -9,7 +9,7 @@ class EmployersViewsTestCase(BaseTestCase):
     def test_company_detail_view(self):
         self.client.login(username="testuser", password="password123")
         response = self.client.get(reverse(
-            "employers:company_detail",
+            "employers:companies_detail",
             kwargs={"pk": self.company.pk})
         )
 
