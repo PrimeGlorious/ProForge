@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container py-5">
+    <div class="p-5 bg-white rounded shadow-sm mb-4" style="border-left: 8px solid #ffc107;">
+      <h1 class="fw-bold mb-3">{{ company.name }}</h1>
+
+      {% if company.website %}
+        <p class="mb-3">
+          <a href="{{ company.website }}" target="_blank" class="text-decoration-none text-warning-emphasis">
+            {{ company.website }}
+          </a>
+        </p>
+      {% endif %}
+
+      <div class="text-muted mb-0" style="line-height: 1.8;">
+        {{ company.description|safe }}
+      </div>
+    </div>
+
+    {% if company.vacancies.all %}
+      <div class="bg-white rounded shadow-sm p-4">
+        <h4 class="fw-bold mb-4">Open Vacancies</h4>
+        <div class="row">
+          {% for vacancy in company.vacancies.all %}
+            <div class="col-md-6 mb-4">
+              <div class="p-4 border rounded h-100">
+                <h5 class="fw-bold mb-2">{{ vacancy.title }}</h5>
+                <div class="text-muted mb-2" style="line-height: 1.5;">
+                  {{ vacancy.description|striptags|truncatechars:160 }}
+                </div>
+                <a href="{% url 'employers:vacancies_detail' vacancy.pk %}" class="text-decoration-none">View Vacancy</a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+{% endblock %}

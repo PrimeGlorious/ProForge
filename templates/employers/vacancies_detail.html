@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="bg-body-secondary py-5">
+    <div class="container" style="max-width: 800px; font-size: 1.1rem;">
+      <div class="bg-white shadow-sm p-5 mb-5 position-relative" style="border-radius: 24px; padding-bottom: 100px;">
+
+        <div class="position-absolute top-0 end-0 mt-3 me-3 d-flex align-items-center gap-3">
+          <span class="text-muted small">Published: {{ vacancy.created_at|date:"d M Y" }}</span>
+        </div>
+
+        {% if vacancy.title %}
+          <h2 class="fw-bold mb-3">{{ vacancy.title }}</h2>
+        {% endif %}
+
+        {% if vacancy.salary %}
+          <p class="fs-4 mb-2 text-dark">{{ vacancy.salary }} ₴</p>
+        {% endif %}
+
+        <div class="mb-2 text-muted">
+          <a href="{% url 'employers:companies_detail' vacancy.company.pk %}"><strong>{{ vacancy.company.name }}</strong></a>
+          {% if vacancy.location %}
+            <span> · {{ vacancy.location }}</span>
+          {% endif %}
+        </div>
+
+        {% if vacancy.contacts %}
+          <div class="mb-4 text-muted">
+            Contact: {{ vacancy.contacts }}
+          </div>
+        {% endif %}
+
+        {% if vacancy.description %}
+          <div class="mb-5" style="line-height: 1.8;">
+            {{ vacancy.description|safe }}
+          </div>
+        {% endif %}
+
+        <div class="position-absolute bottom-0 end-0 mb-4 me-4 d-flex gap-3">
+          <form method="POST" action="{% url 'candidates:toggle_save_vacancy' vacancy.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger rounded-pill d-flex align-items-center gap-2">
+              <i class="bi bi-heart{% if vacancy in user.saved_vacancies.all %}-fill{% endif %}"></i>
+              {% if vacancy in user.saved_vacancies.all %}
+                Remove
+              {% else %}
+                Save
+              {% endif %}
+            </button>
+          </form>
+          <form method="POST" action="{% url 'candidates:apply' vacancy.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-dark rounded-pill px-4 py-2 d-flex align-items-center gap-2">
+              {% if vacancy in user.vacancies.all %}
+                Unapply
+              {% else %}
+                Apply Now
+              {% endif %}
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

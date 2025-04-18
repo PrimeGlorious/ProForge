@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="page-wrapper" style="background-color: #f5f6f7; min-height: 100vh;">
+    <div class="container" style="max-width: 880px; margin: 40px auto; padding: 40px 20px;">
+      <div class="content-box"
+           style="background-color: white; border-radius: 8px; padding: 40px 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+          <h2 class="fw-bold">Moderate Applicants</h2>
+          <a href="{% url 'employers:vacancies_detail' vacancy.pk %}" class="btn btn-outline-secondary">
+            View Vacancy
+          </a>
+        </div>
+
+        {% if formset.forms %}
+          <form method="post">
+            {% csrf_token %}
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              {% for form in formset %}
+                <div
+                    style="border: 1px solid #ddd; border-radius: 6px; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <div style="font-weight: bold;">{{ form.instance.candidate.username }}</div>
+                    <div style="font-size: 13px; color: #666;">
+                      Submitted: {{ form.instance.created_at|date:"M d, Y – H:i" }}
+                    </div>
+                  </div>
+                  <div style="min-width: 200px;">
+                    {{ form.status }}
+                    {{ form.id }}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+            <input type="hidden" name="form-TOTAL_FORMS" value="{{ formset.total_form_count }}">
+            <input type="hidden" name="form-INITIAL_FORMS" value="{{ formset.initial_form_count }}">
+            <input type="hidden" name="form-MIN_NUM_FORMS" value="0">
+            <input type="hidden" name="form-MAX_NUM_FORMS" value="1000">
+
+            <div style="margin-top: 30px; text-align: right;">
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+        {% else %}
+          <div class="alert alert-info mt-4">No applications yet.</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

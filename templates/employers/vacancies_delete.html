@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container py-5">
+    <div class="p-5 bg-white rounded shadow-sm" style="border: 3px solid #ffc107;">
+      <h2 class="fw-bold mb-4 text-center">Delete Vacancy</h2>
+
+      <p class="text-center">Are you sure you want to delete the vacancy: <strong>{{ vacancy.title }}</strong>?</p>
+
+      <form method="POST" action="">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger w-100 mt-3" style="font-weight: bold;">Delete</button>
+      </form>
+      <a href="{% url 'employers:vacancies_manage' %}" class="btn btn-secondary w-100 mt-3">Cancel</a>
+    </div>
+  </div>
+{% endblock %}

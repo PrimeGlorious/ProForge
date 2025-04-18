@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="bg-body-secondary py-5">
+    <div class="container" style="max-width: 630px; font-size: 1.1rem;">
+      {% for application in applications %}
+        <div class="list-group-item d-flex justify-content-between align-items-center mb-3 py-3 border-top">
+          <a href="{% url 'employers:vacancies_detail' application.vacancy.id %}"
+             class="d-flex w-100 text-dark text-decoration-none">
+            <div class="d-flex flex-column">
+              <h6 class="mb-1">{{ application.vacancy.title }}</h6>
+              <small class="text-muted">{{ application.created_at|date:"F j, Y" }}</small>
+            </div>
+          </a>
+
+          <div>
+            {% if application.status == "applied" %}
+              <span class="badge text-muted">Applied</span>
+            {% elif application.status == "interviewed" %}
+              <span class="badge text-primary">Interviewed</span>
+            {% elif application.status == "hired" %}
+              <span class="badge text-success">Hired</span>
+            {% elif application.status == "rejected" %}
+              <span class="badge text-danger">Rejected</span>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+      {% include "includes/paginate.html" %}
+    </div>
+  </div>
+{% endblock %}

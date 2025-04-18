@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container py-5">
+
+    <div class="text-center mb-5">
+      <h1 class="fw-bold">Welcome to ProForge</h1>
+      <p class="text-muted fs-5">Find your perfect job or candidate today</p>
+    </div>
+
+    <div class="row text-center mb-5">
+      <div class="col-md-4 mb-4">
+        <div class="p-4 border rounded bg-white h-100 shadow-sm">
+          <h2 class="fw-bold">Companies</h2>
+          <p class="display-6 text-primary">{{ companies_count }}+</p>
+          <p class="text-muted">Registered partners and employers</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="p-4 border rounded bg-white h-100 shadow-sm">
+          <h2 class="fw-bold">Vacancies</h2>
+          <p class="display-6 text-success">{{ vacancies_count }}+</p>
+          <p class="text-muted">Active job listings available</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="p-4 border rounded bg-white h-100 shadow-sm">
+          <h2 class="fw-bold">Verified Profiles</h2>
+          <p class="display-6 text-danger">{{ candidates_count }}+</p>
+          <p class="text-muted">Trusted candidate accounts</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mb-5">
+      <a href="{% url 'employers:vacancies_list' %}" class="btn btn-dark px-4 py-2 fs-5">Start Exploring Jobs</a>
+    </div>
+  </div>
+{% endblock %}

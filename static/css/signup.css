@@ -1,0 +1,35 @@
+.signup-box {
+    width: 100%;
+    max-width: 460px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.signup-box h2 {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+.btn-dark {
+    border-radius: 8px;
+}
+
+.small-link {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.small-link a {
+    color: #343a40;
+    text-decoration: none;
+}
+
+.small-link a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,9 @@
+<div class="company-card p-4 bg-white rounded shadow-sm mb-3">
+  <h5 class="fw-bold mb-1">{{ company.name }}</h5>
+  {% if company.website %}
+    <a href="{{ company.website }}" class="text-muted small" target="_blank">{{ company.website }}</a>
+  {% endif %}
+  <div class="mt-2 text-muted">
+    {{ company.description|safe|truncatechars:120 }}
+  </div>
+</div>

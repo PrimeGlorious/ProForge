@@ -1,0 +1,649 @@
+[
+{
+    "model": "candidates.candidate",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$something$hashedvalue",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "candidate_1",
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "candidate1@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-01T00:00:00Z",
+        "current_role": "C",
+        "groups": [],
+        "user_permissions": [],
+        "saved_vacancies": []
+    }
+},
+{
+    "model": "candidates.candidate",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$something$hashedvalue",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "candidate_2",
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "email": "candidate2@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-02T00:00:00Z",
+        "current_role": "C",
+        "groups": [],
+        "user_permissions": [],
+        "saved_vacancies": []
+    }
+},
+{
+    "model": "candidates.candidate",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$something$hashedvalue",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "candidate_3",
+        "first_name": "Mark",
+        "last_name": "Johnson",
+        "email": "candidate3@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-03T00:00:00Z",
+        "current_role": "C",
+        "groups": [],
+        "user_permissions": [],
+        "saved_vacancies": []
+    }
+},
+{
+    "model": "candidates.candidate",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$something$hashedvalue",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "candidate_4",
+        "first_name": "Sophie",
+        "last_name": "Lee",
+        "email": "candidate4@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-04T00:00:00Z",
+        "current_role": "C",
+        "groups": [],
+        "user_permissions": [],
+        "saved_vacancies": []
+    }
+},
+{
+    "model": "candidates.candidate",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$something$hashedvalue",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "candidate_5",
+        "first_name": "Lucas",
+        "last_name": "White",
+        "email": "candidate5@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-05T00:00:00Z",
+        "current_role": "C",
+        "groups": [],
+        "user_permissions": [],
+        "saved_vacancies": []
+    }
+},
+{
+    "model": "candidates.candidate",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$something$hashedvalue",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "candidate_6",
+        "first_name": "Emily",
+        "last_name": "Davis",
+        "email": "candidate6@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-06T00:00:00Z",
+        "current_role": "C",
+        "groups": [],
+        "user_permissions": [],
+        "saved_vacancies": []
+    }
+},
+{
+    "model": "candidates.candidate",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$something$hashedvalue",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "candidate_7",
+        "first_name": "Liam",
+        "last_name": "Miller",
+        "email": "candidate7@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-07T00:00:00Z",
+        "current_role": "C",
+        "groups": [],
+        "user_permissions": [],
+        "saved_vacancies": []
+    }
+},
+{
+    "model": "candidates.candidate",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$2SvmUCstHOflXORuDAwJDU$lSrePzwUGSGsJzF0S02EKIglsrsRZGYhIlbfWGkapWo=",
+        "last_login": "2025-04-16T14:42:14.081Z",
+        "is_superuser": false,
+        "username": "test",
+        "first_name": "Test",
+        "last_name": "Test",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-16T14:42:04.580Z",
+        "current_role": "C",
+        "groups": [],
+        "user_permissions": [],
+        "saved_vacancies": [
+            20
+        ]
+    }
+},
+{
+    "model": "candidates.candidate",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$6qDzNKskshGRYYh5OlfB7H$9uKYh6rRc1q3x1ce1++ipYixQlmu58nVl0o19FRnwZo=",
+        "last_login": "2025-04-17T11:49:49.075Z",
+        "is_superuser": true,
+        "username": "gg",
+        "first_name": "",
+        "last_name": "",
+        "email": "gg@gg.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-04-17T11:49:39.474Z",
+        "current_role": "E",
+        "groups": [],
+        "user_permissions": [],
+        "saved_vacancies": [
+            18
+        ]
+    }
+},
+{
+    "model": "candidates.application",
+    "pk": 1,
+    "fields": {
+        "candidate": 8,
+        "vacancy": 20,
+        "created_at": "2025-04-17T10:01:37.752Z",
+        "status": "applied"
+    }
+},
+{
+    "model": "candidates.application",
+    "pk": 2,
+    "fields": {
+        "candidate": 9,
+        "vacancy": 18,
+        "created_at": "2025-04-17T11:52:37.600Z",
+        "status": "applied"
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 1,
+    "fields": {
+        "name": "Techify",
+        "description": "We are shaping the future of technology with AI-powered solutions.",
+        "website": "https://techify.com",
+        "owner": 1
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 2,
+    "fields": {
+        "name": "Creative Minds",
+        "description": "Designing the future of digital media.",
+        "website": "https://creativeminds.com",
+        "owner": 2
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 3,
+    "fields": {
+        "name": "NextGen AI",
+        "description": "Pioneering artificial intelligence applications.",
+        "website": "https://nextgenai.com",
+        "owner": 3
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 4,
+    "fields": {
+        "name": "CloudCorp",
+        "description": "Leading cloud services provider.",
+        "website": "https://cloudcorp.com",
+        "owner": 4
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 5,
+    "fields": {
+        "name": "CyberGuard",
+        "description": "Cybersecurity and data protection services.",
+        "website": "https://cyberguard.com",
+        "owner": 5
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 6,
+    "fields": {
+        "name": "DataX",
+        "description": "Next-gen data analytics company.",
+        "website": "https://datax.com",
+        "owner": 6
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 7,
+    "fields": {
+        "name": "Quantum Leap",
+        "description": "Quantum computing services and solutions.",
+        "website": "https://quantumleap.com",
+        "owner": 7
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 8,
+    "fields": {
+        "name": "FintechPro",
+        "description": "Financial technology services.",
+        "website": "https://fintechpro.com",
+        "owner": 1
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 9,
+    "fields": {
+        "name": "GreenTech",
+        "description": "Eco-friendly solutions for sustainable living.",
+        "website": "https://greentech.com",
+        "owner": 2
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 10,
+    "fields": {
+        "name": "HealthHub",
+        "description": "Innovative healthcare solutions.",
+        "website": "https://healthhub.com",
+        "owner": 3
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 11,
+    "fields": {
+        "name": "EdTech Inc.",
+        "description": "Education technology company.",
+        "website": "https://edtech.com",
+        "owner": 4
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 12,
+    "fields": {
+        "name": "AutoSolutions",
+        "description": "Automotive technology and services.",
+        "website": "https://autosolutions.com",
+        "owner": 5
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 13,
+    "fields": {
+        "name": "SmartHome",
+        "description": "Smart home devices and systems.",
+        "website": "https://smarthome.com",
+        "owner": 6
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 14,
+    "fields": {
+        "name": "EcomPro",
+        "description": "E-commerce platform services.",
+        "website": "https://ecompro.com",
+        "owner": 7
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 15,
+    "fields": {
+        "name": "RetailTech",
+        "description": "Technology solutions for retail industry.",
+        "website": "https://retailtech.com",
+        "owner": 1
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 18,
+    "fields": {
+        "name": "434343",
+        "description": "<p>434343</p>",
+        "website": null,
+        "owner": 8
+    }
+},
+{
+    "model": "employers.company",
+    "pk": 19,
+    "fields": {
+        "name": "434343",
+        "description": "<p>43434</p>",
+        "website": null,
+        "owner": 8
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 1,
+    "fields": {
+        "created_at": "2025-04-01T09:45:00Z",
+        "title": "Backend Developer",
+        "salary": 90000,
+        "company": 1,
+        "location": "London",
+        "contacts": "hr@techify.com",
+        "description": "<p>We are looking for a <strong>Backend Developer</strong> to join our team.</p><ul><li>Experience with Python/Django</li><li>REST API development</li><li>Knowledge of Docker</li></ul><p><em>Remote-friendly</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 2,
+    "fields": {
+        "created_at": "2025-04-02T11:20:00Z",
+        "title": "Frontend Developer",
+        "salary": 85000,
+        "company": 2,
+        "location": "Berlin",
+        "contacts": "jobs@creativeminds.com",
+        "description": "<p>Looking for a talented <strong>Frontend Developer</strong> to help build responsive web applications.</p><ul><li>Experience with React.js</li><li>UI/UX knowledge</li><li>Ability to work in a fast-paced environment</li></ul><p><em>Hybrid work options</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 3,
+    "fields": {
+        "created_at": "2025-04-03T14:00:00Z",
+        "title": "Data Scientist",
+        "salary": 110000,
+        "company": 3,
+        "location": "Remote",
+        "contacts": "hr@nextgenai.com",
+        "description": "<p>Join our team as a <strong>Data Scientist</strong> to develop cutting-edge AI-driven solutions.</p><ul><li>Strong knowledge of machine learning algorithms</li><li>Experience with Python and TensorFlow</li></ul><p><em>Work from anywhere</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 4,
+    "fields": {
+        "created_at": "2025-04-04T16:00:00Z",
+        "title": "Cloud Engineer",
+        "salary": 95000,
+        "company": 4,
+        "location": "Amsterdam",
+        "contacts": "cloud@cloudcorp.com",
+        "description": "<p>We are hiring a <strong>Cloud Engineer</strong> to help with cloud infrastructure management.</p><ul><li>Experience with AWS and GCP</li><li>CI/CD pipeline management</li></ul><p><em>Opportunity for rapid career growth</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 5,
+    "fields": {
+        "created_at": "2025-04-05T13:15:00Z",
+        "title": "Cybersecurity Analyst",
+        "salary": 105000,
+        "company": 5,
+        "location": "San Francisco",
+        "contacts": "security@cyberguard.com",
+        "description": "<p>We need a skilled <strong>Cybersecurity Analyst</strong> to enhance our security systems.</p><ul><li>Experience in penetration testing</li><li>Knowledge of network security protocols</li></ul><p><em>Competitive compensation package</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 6,
+    "fields": {
+        "created_at": "2025-04-06T10:00:00Z",
+        "title": "Full-stack Developer",
+        "salary": 120000,
+        "company": 1,
+        "location": "New York",
+        "contacts": "developer@techify.com",
+        "description": "<p>We are looking for a passionate <strong>Full-stack Developer</strong> to join our growing team.</p><ul><li>Experience with JavaScript frameworks</li><li>Backend knowledge in Node.js</li></ul><p><em>Hybrid work options</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 7,
+    "fields": {
+        "created_at": "2025-04-07T13:00:00Z",
+        "title": "Mobile Developer",
+        "salary": 110000,
+        "company": 3,
+        "location": "London",
+        "contacts": "jobs@nextgenai.com",
+        "description": "<p>Seeking a skilled <strong>Mobile Developer</strong> to work on cross-platform mobile apps.</p><ul><li>React Native / Flutter</li><li>Experience with mobile UI/UX</li></ul><p><em>Full-time, hybrid</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 8,
+    "fields": {
+        "created_at": "2025-04-08T12:30:00Z",
+        "title": "DevOps Engineer",
+        "salary": 115000,
+        "company": 4,
+        "location": "San Francisco",
+        "contacts": "devops@cloudcorp.com",
+        "description": "<p>Seeking a <strong>DevOps Engineer</strong> with expertise in cloud infrastructure and CI/CD pipelines.</p><ul><li>Experience in Kubernetes</li><li>Automation and scripting</li></ul><p><em>Excellent benefits and growth opportunities</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 9,
+    "fields": {
+        "created_at": "2025-04-09T11:15:00Z",
+        "title": "Product Manager",
+        "salary": 125000,
+        "company": 5,
+        "location": "Remote",
+        "contacts": "pm@cyberguard.com",
+        "description": "<p>We need a skilled <strong>Product Manager</strong> to lead cross-functional teams.</p><ul><li>Experience in agile methodologies</li><li>Strong communication skills</li></ul><p><em>Flexible working hours</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 10,
+    "fields": {
+        "created_at": "2025-04-10T15:30:00Z",
+        "title": "Business Analyst",
+        "salary": 95000,
+        "company": 6,
+        "location": "Berlin",
+        "contacts": "hr@datax.com",
+        "description": "<p>We're looking for a <strong>Business Analyst</strong> to support our decision-making processes.</p><ul><li>Experience with data visualization tools</li><li>Strong analytical skills</li></ul><p><em>Competitive salary and benefits</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 11,
+    "fields": {
+        "created_at": "2025-04-11T09:30:00Z",
+        "title": "Backend Developer",
+        "salary": 90000,
+        "company": 2,
+        "location": "Paris",
+        "contacts": "hr@creativeminds.com",
+        "description": "<p>We are looking for a <strong>Backend Developer</strong> to join our growing team.</p><ul><li>Experience with Java</li><li>REST API development</li><li>Knowledge of Docker and Kubernetes</li></ul><p><em>Hybrid work options</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 12,
+    "fields": {
+        "created_at": "2025-04-12T10:20:00Z",
+        "title": "Frontend Developer",
+        "salary": 88000,
+        "company": 3,
+        "location": "San Francisco",
+        "contacts": "developer@nextgenai.com",
+        "description": "<p>Looking for a talented <strong>Frontend Developer</strong> to help build engaging web interfaces.</p><ul><li>Experience with Angular</li><li>Strong UI/UX skills</li><li>Experience in fast-paced environments</li></ul><p><em>Remote-friendly</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 13,
+    "fields": {
+        "created_at": "2025-04-13T14:45:00Z",
+        "title": "Cloud Engineer",
+        "salary": 98000,
+        "company": 4,
+        "location": "London",
+        "contacts": "cloud@cloudcorp.com",
+        "description": "<p>We are hiring a <strong>Cloud Engineer</strong> with experience in GCP and AWS to scale our infrastructure.</p><ul><li>Experience in Cloud migrations</li><li>CI/CD pipeline management</li></ul><p><em>Opportunity for growth</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 14,
+    "fields": {
+        "created_at": "2025-04-14T11:30:00Z",
+        "title": "Cybersecurity Analyst",
+        "salary": 102000,
+        "company": 5,
+        "location": "Berlin",
+        "contacts": "security@cyberguard.com",
+        "description": "<p>We are looking for an experienced <strong>Cybersecurity Analyst</strong> to help protect our systems from evolving threats.</p><ul><li>Experience in network security protocols</li><li>Knowledge of firewalls and VPNs</li></ul><p><em>Flexible work arrangements</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 15,
+    "fields": {
+        "created_at": "2025-04-15T13:00:00Z",
+        "title": "Full-stack Developer",
+        "salary": 115000,
+        "company": 1,
+        "location": "New York",
+        "contacts": "developer@techify.com",
+        "description": "<p>We are hiring a <strong>Full-stack Developer</strong> to develop cutting-edge web applications.</p><ul><li>Experience with JavaScript and Node.js</li><li>Strong frontend and backend skills</li></ul><p><em>Remote work option</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 16,
+    "fields": {
+        "created_at": "2025-04-16T10:30:00Z",
+        "title": "Mobile Developer",
+        "salary": 110000,
+        "company": 2,
+        "location": "Paris",
+        "contacts": "jobs@creativeminds.com",
+        "description": "<p>We are looking for a skilled <strong>Mobile Developer</strong> to work on mobile apps.</p><ul><li>Experience with React Native</li><li>Ability to optimize performance for mobile platforms</li></ul><p><em>Hybrid work options</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 17,
+    "fields": {
+        "created_at": "2025-04-17T12:00:00Z",
+        "title": "DevOps Engineer",
+        "salary": 120000,
+        "company": 3,
+        "location": "San Francisco",
+        "contacts": "devops@nextgenai.com",
+        "description": "<p>Join our team as a <strong>DevOps Engineer</strong> to support our growing infrastructure.</p><ul><li>Experience with Kubernetes and Docker</li><li>CI/CD pipeline management</li></ul><p><em>Remote work options</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 18,
+    "fields": {
+        "created_at": "2025-04-18T11:00:00Z",
+        "title": "Product Manager",
+        "salary": 130000,
+        "company": 4,
+        "location": "London",
+        "contacts": "pm@cloudcorp.com",
+        "description": "<p>We are looking for an experienced <strong>Product Manager</strong> to lead innovative projects.</p><ul><li>Experience with agile methodologies</li><li>Excellent leadership and communication skills</li></ul><p><em>Hybrid work options</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 19,
+    "fields": {
+        "created_at": "2025-04-19T15:30:00Z",
+        "title": "Business Analyst",
+        "salary": 96000,
+        "company": 5,
+        "location": "Remote",
+        "contacts": "hr@cyberguard.com",
+        "description": "<p>Looking for a <strong>Business Analyst</strong> to support decision-making and data-driven projects.</p><ul><li>Experience with data analysis and visualization</li><li>Strong problem-solving skills</li></ul><p><em>Remote work options</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 20,
+    "fields": {
+        "created_at": "2025-04-20T10:00:00Z",
+        "title": "Data Scientist",
+        "salary": 115000,
+        "company": 6,
+        "location": "Berlin",
+        "contacts": "hr@datax.com",
+        "description": "<p>We are hiring a <strong>Data Scientist</strong> to help build machine learning models.</p><ul><li>Experience with Python and machine learning algorithms</li><li>Data visualization skills</li></ul><p><em>Competitive salary</em></p>"
+    }
+},
+{
+    "model": "employers.vacancy",
+    "pk": 23,
+    "fields": {
+        "created_at": "2025-04-17T08:19:45.237Z",
+        "title": "boooo1",
+        "salary": 2322,
+        "company": 18,
+        "location": null,
+        "contacts": null,
+        "description": "<p>4343434</p>"
+    }
+}
+]

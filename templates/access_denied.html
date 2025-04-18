@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Access Denied</title>
+  <link rel="stylesheet" href="{% static 'css/access_denied.css' %}">
+</head>
+<body>
+<div class="access-denied-wrapper">
+  <div class="access-denied-box">
+    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="none" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="#d32f2f"/>
+      <rect x="11" y="6" width="2" height="2" fill="white"/>
+      <rect x="11" y="10" width="2" height="8" fill="white"/>
+    </svg>
+
+    <h2 class="access-denied-title">Access Denied</h2>
+    <p class="access-denied-message">You don't have permission to access this page.</p>
+
+    <a href="{% url 'candidates:index' %}" class="access-denied-button">
+      Back to Home
+    </a>
+  </div>
+</div>
+</body>
+</html>

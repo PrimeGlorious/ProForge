@@ -1,0 +1,33 @@
+{% load query_transform %}
+{% if is_paginated %}
+  <nav aria-label="Pagination" class="mt-4">
+    <div class="text-center mb-2 text-dark">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+    </div>
+    <ul class="pagination justify-content-center mb-4">
+
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link text-dark bg-white border-dark rounded-pill px-3"
+             href="?{% query_transform request page=page_obj.prev_page_number %}">Prev</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link text-secondary bg-light border-dark rounded-pill px-3">Prev</span>
+        </li>
+      {% endif %}
+
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link text-dark bg-white border-dark rounded-pill px-3"
+             href="?{% query_transform request page=page_obj.next_page_number %}">Next</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link text-secondary bg-light border-dark rounded-pill px-3">Next</span>
+        </li>
+      {% endif %}
+
+    </ul>
+  </nav>
+{% endif %}
