@@ -52,17 +52,6 @@ class VacancyForm(forms.ModelForm):
             raise forms.ValidationError("This field cannot be empty.")
         return title
 
-    def clean_salary(self):
-        salary = self.cleaned_data.get("salary")
-
-        if salary:
-            if not isinstance(salary, int) or salary < 1:
-                raise forms.ValidationError("Salary must be a positive integer.")
-        else:
-            raise forms.ValidationError("This field cannot be empty.")
-
-        return salary
-
     def clean_company(self):
         if self.is_update:
             return self.instance.company
