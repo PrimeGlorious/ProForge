@@ -1,7 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.paginator import Paginator
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -35,7 +33,7 @@ class AboutView(TemplateView):
         return render(request, self.template_name)
 
 
-class ProfileView(TemplateView):
+class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = "candidates/profile.html"
 
     def get(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:

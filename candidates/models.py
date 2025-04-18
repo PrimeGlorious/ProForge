@@ -7,8 +7,8 @@ from employers.models import Vacancy
 
 class Candidate(AbstractUser):
     class UserRoles(models.TextChoices):
-        CANDIDATE = "C", "Candidate"
-        EMPLOYER = "E", "Employer"
+        CANDIDATE = "candidate", "Candidate"
+        EMPLOYER = "employer", "Employer"
 
     vacancies = models.ManyToManyField(
         to=Vacancy,

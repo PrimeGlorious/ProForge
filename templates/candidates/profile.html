@@ -12,7 +12,7 @@
           {% endif %}
           <small class="text-muted">{{ current_user.username }}</small>
           <div class="mt-4">
-            {% if current_user.current_role == "C" %}
+            {% if current_user.current_role == "candidate" %}
               <span class="badge bg-dark mb-3">Candidate Mode</span>
               <a href="{% url "accounts:switch_role" %}" class="btn btn-dark w-100 mb-2">Switch to Employer</a>
             {% else %}
@@ -32,7 +32,7 @@
       </div>
 
       <div class="col-lg-9">
-        {% if current_user.current_role == "C" %}
+        {% if current_user.current_role == "candidate" %}
           <div class="bg-white rounded shadow-sm p-4 mb-4">
             <h5 class="fw-bold mb-3">Personal Information</h5>
             <div class="row mb-2">
