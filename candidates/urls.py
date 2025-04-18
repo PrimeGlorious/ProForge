@@ -1,26 +1,50 @@
 from django.urls import path
 from candidates.views import (
-    index,
-    about,
-    profile,
-    toggle_save_vacancy,
-    saved_vacancies,
-    apply,
-    applications
+    IndexView,
+    AboutView,
+    ProfileView,
+    ToggleSaveVacancyView,
+    SavedVacanciesView,
+    ApplyView,
+    ApplicationsView
 )
 
 urlpatterns = [
-    path("", index, name="index"),
-    path("about/", about, name="about"),
-    path("profile/", profile, name="profile"),
+    path(
+        "",
+        IndexView.as_view(),
+        name="index"
+    ),
+    path(
+        "about/",
+        AboutView.as_view(),
+        name="about"
+    ),
+    path(
+        "profile/",
+        ProfileView.as_view(),
+        name="profile"
+    ),
     path(
         "toggle-save-vacancy/<int:pk>/",
-        toggle_save_vacancy,
+        ToggleSaveVacancyView.as_view(),
         name="toggle_save_vacancy"
     ),
-    path("saved-vacancies/", saved_vacancies, name="saved_vacancies"),
-    path("apply/<int:pk>/", apply, name="apply"),
-    path("applications/", applications, name="applications"),
+    path(
+        "saved-vacancies/",
+        SavedVacanciesView.as_view(),
+        name="saved_vacancies"
+    ),
+    path(
+        "apply/<int:pk>/",
+        ApplyView.as_view(),
+        name="apply"
+    ),
+    path(
+        "applications/",
+        ApplicationsView.as_view(),
+        name="applications"
+    ),
 ]
 
 app_name = "candidates"
